@@ -70,3 +70,7 @@ const userDataSample = [
     ]
   }
 ];
+
+if (typeof module !== 'undefined') {
+  module.exports = userDataSample;
+}
