@@ -1,6 +1,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
 }
 
 body,
@@ -22,6 +23,7 @@ body {
 header {
   grid-area: header;
   background: red;
+  font-weight: 800;
 }
 
 .user-info {
@@ -31,7 +33,20 @@ header {
 }
 
 .widget-section {
+  display: flex;
   grid-area: widgets;
-  background: orange;
+}
 
+.hydration {
+  flex: 1 0 auto;
+  background: blue;
+}
+
+.sleep {
+  flex: 1 0 auto;
+  background: pink;
+}
+
+.activity {
+  flex: 1 0 auto;
 }
