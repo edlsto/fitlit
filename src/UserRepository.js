@@ -1,4 +1,3 @@
-const data = require('../data/users-sample.js');
 
 class UserRepository {
   constructor(data) {
@@ -10,7 +9,7 @@ class UserRepository {
   }
 
   getAverageStepGoal() {
-    return this.data.reduce(user => (acc, el) => {
+    return this.data.reduce((acc, el) => {
       acc += el.dailyStepGoal;
       return acc;
     }, 0) / this.data.length;
