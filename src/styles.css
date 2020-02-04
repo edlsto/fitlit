@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "user widgets";
+  grid-template-rows: 100px 1fr;
+  grid-template-columns: 200px 1fr;
+  min-height: 100%;
+}
+
+header {
+  grid-area: header;
+  background: red;
+  font-weight: 800;
+}
+
+.user-info {
+  grid-area: user;
+  background: yellow;
+
+}
+
+.widget-section {
+  display: flex;
+  grid-area: widgets;
+}
+
+.hydration {
+  flex: 1 0 auto;
+  background: blue;
+}
+
+.sleep {
+  flex: 1 0 auto;
+  background: pink;
+}
+
+.activity {
+  flex: 1 0 auto;
+}
