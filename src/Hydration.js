@@ -2,7 +2,6 @@ class Hydration {
   constructor(hydrationData) {
     this.hydrationData = hydrationData;
   }
-
   averageWaterConsumedPerDay(userID) {
     let userHydrationData = this.hydrationData.filter(el => {
       return el.userID === userID
