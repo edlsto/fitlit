@@ -33,20 +33,31 @@ header {
 }
 
 .widget-section {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    "hydration sleep activity";
+    grid-template-columns: 1fr 1fr 1fr;
   grid-area: widgets;
 }
 
 .hydration {
-  flex: 1 0 auto;
+  grid-area: hydration;
   background: blue;
+  padding: 2em;
 }
 
 .sleep {
-  flex: 1 0 auto;
+  grid-area: sleep;
   background: pink;
 }
 
 .activity {
-  flex: 1 0 auto;
+  grid-area: activity;
+}
+
+.card {
+  width: 100%;
+  padding: 2em;
+  margin-bottom: 2em;
+  background-color: white;
 }
