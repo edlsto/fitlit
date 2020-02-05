@@ -19,14 +19,18 @@ class Hydration {
     }).numOunces
   }
 
-  // waterConsumedForSpecificWeek(userID, endDate) {
-  //   var newEndDate = new Date(endDate)
-  //   return this.hydrationData.filter(el => {
-  //     if (((el.date < newEndDate) && (el.date > newEndDate.setDate(newEndDate.getDate() - 7))) && el.userID === userID) {
-  //
-  //     }
-  //   })
-  // }
+  waterConsumedForSpecificWeek(userID, endDate) {
+    const date = new Date(endDate)
+    const sevenDaysAgo = new Date(new Date(endDate).setDate(new Date(endDate).getDate() - 7))
+    var filteredResults = this.hydrationData.filter(el => {
+      const elementDate = new Date(el.date)
+      return (elementDate <= date) && (elementDate > sevenDaysAgo)
+      && el.userID === userID
+    })
+    return filteredResults.map(el => {
+      return el.numOunces
+    })
+  }
 
 
 }
