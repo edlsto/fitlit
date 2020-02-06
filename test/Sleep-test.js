@@ -73,19 +73,24 @@ describe('Sleep', function() {
   it('should find the longest sleepers for a given day', function() {
     const sleep = new Sleep(fullData);
     expect(sleep.findLongestSleepers("2019/09/22")).to.deep.equal([
-  {
-    userID: 7,
-    date: '2019/09/22',
-    hoursSlept: 10.9,
-    sleepQuality: 4.7
-  },
-  {
-    userID: 20,
-    date: '2019/09/22',
-    hoursSlept: 10.9,
-    sleepQuality: 3.8
-  }
-])
-  })
+    {
+      userID: 7,
+      date: '2019/09/22',
+      hoursSlept: 10.9,
+      sleepQuality: 4.7
+    },
+    {
+      userID: 20,
+      date: '2019/09/22',
+      hoursSlept: 10.9,
+      sleepQuality: 3.8
+    }
+    ])
+  });
+
+  it('should return sleep quality for a given day', function() {
+    const sleep = new Sleep(data);
+    expect(sleep.getSleepQuality(1, "2019/06/15")).to.equal(2.2);
+  });
 
 });
