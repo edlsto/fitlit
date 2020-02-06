@@ -25,8 +25,17 @@ class Sleep {
       return (el.userID === userID && el.date === date)
     }).hoursSlept
   }
-  hoursSleptForSpecificWeek(userID, week) {
-
+  hoursSleptForSpecificWeek(userID, endDate) {
+    const date = new Date(endDate)
+    const sevenDaysAgo = new Date(new Date(endDate).setDate(new Date(endDate).getDate() - 7))
+    var filteredResults = this.sleepData.filter(el => {
+      const elementDate = new Date(el.date)
+      return (elementDate <= date) && (elementDate > sevenDaysAgo)
+      && el.userID === userID
+    });
+    return filteredResults.map(el => {
+      return el.hoursSlept
+    });
   }
   sleepQualityForSpecificWeek(userID, week) {
 
