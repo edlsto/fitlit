@@ -23,15 +23,27 @@
     </section>
     <section class="widget-section">
       <div class="hydration">
-        <p>hydration</p>
+        <div class="card">
+          <h2>Hydration today</h2>
+          <p>You have consumed <span id="water-today"></span> ounces of water today</p>
+        </div>
+        <div class="card">
+          <h2>Last 7 days</h2>
+          <p>In the last seven days you have consumed:
+            <ul id="water-week-list">
+            </ul>
+          </p>
+        </div>
       </div>
       <div class="sleep">
         <p>sleep</p>
+
       </div>
       <div class="activity">
         <p>activity</p>
       </div>
     </section>
+    <script type="text/javascript" src="./Hydration.js"></script>
     <script type="text/javascript" src="./UserRepository.js"></script>
     <script type="text/javascript" src="./User.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>

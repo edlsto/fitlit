@@ -20,8 +20,12 @@ const hydrationDataSample = [
     "numOunces": 85
   },
   {
-    "userID": 5,
-    "date": "2019/06/15",
+    "userID": 1,
+    "date": "2019/06/16",
     "numOunces": 42
   }
 ]
+
+if (typeof module !== 'undefined') {
+  module.exports = hydrationDataSample;
+}
