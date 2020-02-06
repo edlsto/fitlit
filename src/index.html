@@ -36,14 +36,28 @@
         </div>
       </div>
       <div class="sleep">
-        <p>sleep</p>
-
+        <div class="card">
+          <h2>Sleep today</h2>
+          <p>You slept <span id="sleep-today"></span> hours last night with a sleep quality of <span id="sleep-quality"></span></p>
+        </div>
+        <div class="card">
+          <h2>Sleep last 7 days</h2>
+          <p>In the last seven days you have slept:
+            <ul id="sleep-week-list">
+            </ul>
+          </p>
+        </div>
+        <div class="card">
+          <h2>Sleep averages</h2>
+          <p>On average, you sleep <span id="sleep-hours-average"></span> hours with a sleep quality of <span id="sleep-quality-average"></span></p>
+        </div>
       </div>
       <div class="activity">
         <p>activity</p>
       </div>
     </section>
     <script type="text/javascript" src="./Hydration.js"></script>
+    <script type="text/javascript" src="./Sleep.js"></script>
     <script type="text/javascript" src="./UserRepository.js"></script>
     <script type="text/javascript" src="./User.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>
