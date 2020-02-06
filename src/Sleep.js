@@ -3,9 +3,8 @@ class Sleep {
     this.sleepData = sleepData;
   }
   averageHoursSleptPerDay(userID) {
-    console.log(this.sleepData);
     let userSleepData = this.sleepData.filter(el => {
-      return el.userID === userID
+      return el.userID === userID;
     })
     return userSleepData.reduce((acc, el) => {
       acc += el.hoursSlept;
@@ -13,18 +12,23 @@ class Sleep {
     }, 0) / userSleepData.length
   }
   averageSleepQuality(userID) {
-
+    let userSleepData = this.sleepData.filter(el => {
+      return el.userID === userID;
+    });
+    return Number((userSleepData.reduce((acc, el) => {
+      acc += el.sleepQuality;
+      return acc;
+    }, 0) / userSleepData.length).toFixed(1))
   }
   getHoursSlept(userID, date) {
-
+    return this.sleepData.find(el => {
+      return (el.userID === userID && el.date === date)
+    }).hoursSlept
   }
   hoursSleptForSpecificWeek(userID, week) {
 
   }
   sleepQualityForSpecificWeek(userID, week) {
-
-  }
-  averageSleepQuality() {
 
   }
   findGoodSleepers(week) {
