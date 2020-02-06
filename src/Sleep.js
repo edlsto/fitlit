@@ -77,7 +77,10 @@ class Sleep {
       return sleepQualityAverages.filter(user => user.averageSleepQuality > 3)
   }
   findLongestSleepers(date) {
-
+    const sleepDataForDay = this.sleepData.filter(el => el.date === date);
+    sleepDataForDay.sort((a, b) => b.hoursSlept - a.hoursSlept);
+    const mostSlept = sleepDataForDay[0].hoursSlept;
+    return sleepDataForDay.filter(el => el.hoursSlept === mostSlept)
   }
 
 }
