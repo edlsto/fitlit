@@ -70,4 +70,22 @@ describe('Sleep', function() {
 ])
   });
 
+  it('should find the longest sleepers for a given day', function() {
+    const sleep = new Sleep(fullData);
+    expect(sleep.findLongestSleepers("2019/09/22")).to.deep.equal([
+  {
+    userID: 7,
+    date: '2019/09/22',
+    hoursSlept: 10.9,
+    sleepQuality: 4.7
+  },
+  {
+    userID: 20,
+    date: '2019/09/22',
+    hoursSlept: 10.9,
+    sleepQuality: 3.8
+  }
+])
+  })
+
 });
