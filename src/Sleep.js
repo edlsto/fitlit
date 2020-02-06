@@ -37,8 +37,18 @@ class Sleep {
       return el.hoursSlept
     });
   }
-  sleepQualityForSpecificWeek(userID, week) {
-
+  sleepQualityForSpecificWeek(userID, endDate) {
+    const date = new Date(endDate)
+    const sevenDaysAgo = new Date(new Date(endDate).setDate(new Date(endDate).getDate() - 7))
+    var filteredResults = this.sleepData.filter(el => {
+      const elementDate = new Date(el.date)
+      return (elementDate <= date) && (elementDate > sevenDaysAgo)
+      && el.userID === userID
+    });
+    console.log(filteredResults);
+    return filteredResults.map(el => {
+      return el.sleepQuality
+    });
   }
   findGoodSleepers(week) {
 
