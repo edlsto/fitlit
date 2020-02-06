@@ -49,6 +49,7 @@ header {
 .sleep {
   grid-area: sleep;
   background: pink;
+  padding: 2em;
 }
 
 .activity {
