@@ -17,6 +17,16 @@ describe('Activity', function() {
     expect(activity).to.be.an.instanceof(Activity);
   });
 
+  it('should get steps walked for specific day', function() {
+    const activity = new Activity(data, userData);
+    expect(activity.getSteps(1, '2019/06/15')).to.equal(3577);
+  });
+
+  it('should get stairs climbed for specific day', function() {
+    const activity = new Activity(data, userData);
+    expect(activity.getStairsClimbed(1, '2019/06/15')).to.equal(16);
+  });
+
   it('should get miles walked for specific day', function() {
     const activity = new Activity(data, userData);
     expect(activity.getMilesWalked(1, '2019/06/15')).to.equal(2.9);
@@ -30,6 +40,18 @@ describe('Activity', function() {
   it('should get average active minutes for specific week for specific user', function() {
     const activity = new Activity(fullData, userData);
     expect(activity.getAverageActiveMinutesForWeek(1, '2019/09/22')).to.equal(217.7);
+  });
+
+  it('should get all stats for specific week for specific user', function() {
+    const activity = new Activity(fullData, userData);
+    expect(activity.getStatsForWeek(1, '2019/09/22')).to.deep.equal([
+      [ 11067, 300, 19 ],
+  [ 4901, 288, 10 ],
+  [ 9974, 80, 40 ],
+  [ 12083, 218, 20 ],
+  [ 14000, 262, 17 ],
+  [ 5711, 137, 43 ],
+  [ 8072, 239, 23 ]]);
   });
 
   it('should determine whether a user reaches a step goal for a specific day', function() {
