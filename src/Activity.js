@@ -4,6 +4,18 @@ class Activity {
     this.userData = userData
   }
 
+  getSteps(userID, date) {
+    return this.activityData.find(el => {
+      return (el.userID === userID) && (el.date === date)
+    }).numSteps;
+  }
+
+  getStairsClimbed(userID, date) {
+    return this.activityData.find(el => {
+      return (el.userID === userID) && (el.date === date)
+    }).flightsOfStairs;
+  }
+
   getMilesWalked(userID, date) {
     let currentUser = this.userData.find(user => {
       return userID === user.id;
@@ -35,6 +47,20 @@ class Activity {
     return Number(result.toFixed(1))
   }
 
+  getStatsForWeek(userID, endDate) {
+    const date = new Date(endDate)
+    const sevenDaysAgo = new Date(new Date(endDate).setDate(new Date(endDate).getDate() - 7))
+    var filteredResults = this.activityData.filter(el => {
+      const elementDate = new Date(el.date)
+      return (elementDate <= date) && (elementDate > sevenDaysAgo)
+      && el.userID === userID
+    });
+    let result = filteredResults.map(el => {
+      return [el.numSteps, el.minutesActive, el.flightsOfStairs]
+    })
+    return result;
+  }
+
   reachedStepGoal(userID, date) {
     let currentUser = this.userData.find(user => {
       return userID === user.id;
@@ -52,7 +78,6 @@ class Activity {
     let result = this.activityData.filter(el => {
       return el.numSteps >= currentUser.dailyStepGoal && el.userID === userID;
     });
-    console.log(result.map(el => el.date))
     return result.map(el => el.date)
   }
 
