@@ -78,7 +78,6 @@ class Sleep {
           }, 0) / 7).toFixed(1))
         }
       })
-      console.log(sleepQualityAverages.filter(user => user.averageSleepQuality > 3));
       return sleepQualityAverages.filter(user => user.averageSleepQuality > 3)
   }
   findLongestSleepers(date) {
