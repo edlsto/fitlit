@@ -88,3 +88,7 @@ header {
   display: flex;
   justify-content: space-around;
 }
+
+.bold {
+  font-weight: bold;
+}
