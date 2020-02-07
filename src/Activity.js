@@ -4,6 +4,36 @@ class Activity {
     this.userData = userData
   }
 
+  getFriendsLeaderboard(userID, date) {
+    const currentUser = this.userData.find(user => {
+      return userID === user.id;
+    })
+    const friends = currentUser.friends.map(friend => {
+      return this.userData.find(user => {
+        return friend === user.id;
+      })
+    })
+    friends.forEach(friend => {
+      if (friend.id === currentUser.id) {
+        friends.splice(indexOf(friend), 1)
+      }
+    })
+    currentUser.name = 'You'
+    friends.push(currentUser)
+    // friends[friends.length - 1].name = 'You'
+    console.log(friends)
+    const result = friends.map(friend => {
+      return {
+        name: friend.name,
+        numSteps: this.getStatsForWeek(friend.id, date).map(el => el[0]).reduce((acc, el) => {
+          acc += el;
+          return acc;
+        }, 0)
+      }
+    }).sort((a, b) => b.numSteps - a.numSteps)
+    return result;
+  }
+
   getSteps(userID, date) {
     return this.activityData.find(el => {
       return (el.userID === userID) && (el.date === date)
