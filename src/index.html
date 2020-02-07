@@ -13,12 +13,14 @@
     </header>
     <section class="user-info">
       <h2>Hello, <span id="name"></span></h2>
-      <p>Address: <span id="address"></span></p>
-      <p>Email: <span id="email"></span></p>
+      <p><span id="address"></span></p>
+      <p><span id="email"></span></p>
       <p>Stride Length: <span id="stride-length"></span></p>
       <p>Daily Step Goal: <span id="daily-step-goal"></span></p>
       <p>Your step goal is <span id="step-compare"></span> than the average of <span id="average-step-goal"></span>!</p>
-      <!-- <p>Friends: <span id="friends"></span></p> -->
+      <p>Friends:</p>
+      <ul id="friends">
+      </ul>
 
     </section>
     <section class="widget-section">
@@ -28,7 +30,7 @@
           <p>You have consumed <span id="water-today"></span> ounces of water today</p>
         </div>
         <div class="card">
-          <h2>Last 7 days</h2>
+          <h2>Hydration last 7 days</h2>
           <p>In the last seven days you have consumed:
             <ul id="water-week-list">
             </ul>
@@ -53,9 +55,38 @@
         </div>
       </div>
       <div class="activity">
-        <p>activity</p>
+        <div class="card">
+          <h2>Steps today</h2>
+          <p>You took <span id="steps-today"></span> steps today (<span id="steps-compare"></span>)</p>
+        </div>
+        <div class="card">
+          <h2>Minutes active today</h2>
+          <p>You were active for minutes <span id="active-today"></span> today (<span id="minutes-active-compare"></span>)</p>
+        </div>
+        <div class="card">
+          <h2>Stairs climbed today</h2>
+          <p>You climbed <span id="flights-stairs-today"></span> flights of stairs today (<span id="flights-stairs-compare"></span>)</p>
+        </div>
+        <div class="card">
+          <h2>Weekly activity view</h2>
+          <div class="week-container">
+            <div>
+              <p>Steps:</p>
+              <ul id="steps-list"></ul>
+            </div>
+            <div>
+              <p>Minutes active:</p>
+              <ul id="minutes-list"></ul>
+            </div>
+            <div>
+              <p>Flights climbed:</p>
+              <ul id="stairs-list"></ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+    <script type="text/javascript" src="./Activity.js"></script>
     <script type="text/javascript" src="./Hydration.js"></script>
     <script type="text/javascript" src="./Sleep.js"></script>
     <script type="text/javascript" src="./UserRepository.js"></script>
