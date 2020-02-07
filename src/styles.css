@@ -16,49 +16,75 @@ body {
     "header header"
     "user widgets";
   grid-template-rows: 100px 1fr;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 250px 1fr;
   min-height: 100%;
 }
 
 header {
   grid-area: header;
-  background: red;
+  background: #71eeb8;
   font-weight: 800;
+  padding: .4em .2em .2em 1em;
+  font-size: 2em;
 }
 
 .user-info {
   grid-area: user;
-  background: yellow;
+  background: lightgray;
+  padding: 1em;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
 
+.user-info * {
+  margin-bottom: .4em;
 }
 
 .widget-section {
   display: grid;
   grid-template-areas:
     "hydration sleep activity";
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: .4fr .6fr 1fr;
   grid-area: widgets;
+  background-color: lightgray;
+  padding-right: 1em;
 }
 
 .hydration {
   grid-area: hydration;
-  background: blue;
-  padding: 2em;
+  padding: 1em 0 0 1em;
 }
 
 .sleep {
   grid-area: sleep;
-  background: pink;
-  padding: 2em;
+  padding: 1em 0 0 1em;
 }
 
 .activity {
   grid-area: activity;
+  padding: 1em 0 0 1em;
+}
+
+.activity .card {
+  flex: 0 1 48.5%;
+}
+
+.higher {
+  color: green;
+}
+
+.lower {
+  color: red;
 }
 
 .card {
   width: 100%;
-  padding: 2em;
-  margin-bottom: 2em;
+  padding: 1.5em;
+  margin-bottom: 1em;
   background-color: white;
+}
+
+.week-container {
+  display: flex;
+  justify-content: space-around;
 }
