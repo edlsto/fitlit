@@ -28,6 +28,9 @@ let flightsStairsCompare = document.querySelector('#flights-stairs-compare')
 let stepsList = document.querySelector('#steps-list')
 let minutesList = document.querySelector('#minutes-list')
 let stairsList = document.querySelector('#stairs-list')
+let trend = document.querySelector('#trend')
+let goal = document.querySelector('#goal')
+
 
 let userFriends = document.querySelector("#friends");
 
@@ -41,7 +44,6 @@ friends.forEach(el => {
   userFriends.insertAdjacentHTML('beforeend', `<li class="friends-leaderboard">${el.name}, ${numberWithCommas(el.numSteps)} steps</li>`)
 })
 let friendList = document.querySelectorAll('.friends-leaderboard')
-console.log(friendList)
 friendList.forEach(friend => {
   if (friend.innerText.includes('You')) {
     friend.classList.add('bold')
@@ -90,4 +92,17 @@ statsWeek.forEach(el => {
   stairsList.insertAdjacentHTML('afterbegin', `<li>${el[2]}</ul>`);
 })
 
-console.log(activity.getFriendsLeaderboard(currentUser.id, today))
+const monthNames = ["Jan.", "Feb.", "March", "April", "May", "June",
+  "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
+];
+
+let trendInfo = activity.getTrend(currentUser.id, today);
+if (trendInfo[0].date.toString() === new Date(today).toString()) {
+  trend.innerText = `You are streaking! Your steps have increased for the last ${trendInfo.length} days!`
+} else {
+  trend.innerText = 'The last time your daily steps increased each day for three or more days was ' + monthNames[trendInfo[0].date.getMonth()] + ' ' + trendInfo[0].date.getDate() + ', when you had a streak of ' + trendInfo.length + ' days.'
+}
+
+goal.innerText = `In the last 30 days, you have reached your daily steps goal ${activity.reachedStepGoalForMonth(currentUser.id, today)} times`
+
+console.log(activity.reachedStepGoalForMonth(currentUser.id, today))
