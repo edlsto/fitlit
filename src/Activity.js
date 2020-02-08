@@ -4,6 +4,73 @@ class Activity {
     this.userData = userData
   }
 
+  getTrend(userID, date) {
+    let days = this.activityData.filter(el => el.userID === userID && new Date(el.date) <= new Date(today) ).reverse()
+    let streak = days.map((d, index) => {
+      function getDateString(date) {
+        const year = date.getFullYear().toString()
+        let month = (date.getMonth() + 1).toString();
+        if (month < 10) {
+          month = '0' + month;
+        }
+        let day = date.getDate()
+        if (day < 10) {
+          day = '0' + day;
+        }
+        return `${year}/${month}/${day}`
+      }
+      let trend = [
+        {
+          date: new Date(new Date(date).setDate(new Date(date).getDate() - index)),
+          numSteps: this.getSteps(userID, getDateString(new Date(new Date(date).setDate(new Date(date).getDate() - index))))
+        }
+      ];
+      for (let i = 0; i < days.length - index - 1 ; i++) {
+        let dayOf = new Date(new Date(date).setDate(new Date(date).getDate() - i - index));
+        let dayBefore = new Date(new Date(date).setDate(new Date(date).getDate() - i - index - 1 ));
+        const dayString = getDateString(dayOf)
+        const dayBeforeString = getDateString(dayBefore)
+        if (this.getSteps(userID,dayString) > this.getSteps(userID,dayBeforeString)) {
+          trend.push({
+            date: dayBefore,
+            numSteps:this.getSteps(userID,dayBeforeString)
+          })
+        } else break;
+      }
+      return trend
+    })
+    return streak.find(el => el.length >= 3);
+
+  }
+
+  reachedStepGoalForMonth(userID, date) {
+    function getDateString(date) {
+      const year = date.getFullYear().toString()
+      let month = (date.getMonth() + 1).toString();
+      if (month < 10) {
+        month = '0' + month;
+      }
+      let day = date.getDate()
+      if (day < 10) {
+        day = '0' + day;
+      }
+      return `${year}/${month}/${day}`
+    }
+    let results = [];
+    for (let i = 0; i < 30; i++) {
+      let dayOf = new Date(new Date(date).setDate(new Date(date).getDate() - i));
+      console.log(dayOf)
+      const dayString = getDateString(dayOf);
+      results.push(this.reachedStepGoal(userID, dayString))
+    }
+    return results.reduce((acc, el) => {
+      if (el) {
+        acc++;
+      }
+      return acc;
+    }, 0)
+  }
+
   getFriendsLeaderboard(userID, date) {
     const currentUser = this.userData.find(user => {
       return userID === user.id;
@@ -13,15 +80,13 @@ class Activity {
         return friend === user.id;
       })
     })
-    friends.forEach(friend => {
-      if (friend.id === currentUser.id) {
-        friends.splice(indexOf(friend), 1)
-      }
-    })
+    // friends.forEach(friend => {
+    //   if (friend.id === currentUser.id) {
+    //     friends.splice(indexOf(friend), 1)
+    //   }
+    // })
     currentUser.name = 'You'
     friends.push(currentUser)
-    // friends[friends.length - 1].name = 'You'
-    console.log(friends)
     const result = friends.map(friend => {
       return {
         name: friend.name,
