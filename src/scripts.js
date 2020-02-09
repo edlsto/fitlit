@@ -37,7 +37,11 @@ userEmail.innerText = currentUser.email;
 userStrideLength.innerText = currentUser.strideLength;
 userStepGoal.innerText = numberWithCommas(currentUser.dailyStepGoal);
 let friends = activity.getFriendsLeaderboard(currentUser.id, today);
+console.log(friends)
 friends.forEach(el => {
+  if (el.name === currentUser.name) {
+    el.name = 'You'
+  }
   userFriends.insertAdjacentHTML('beforeend', `<li class="friends-leaderboard">${el.name}, ${numberWithCommas(el.numSteps)} steps</li>`)
 })
 let friendList = document.querySelectorAll('.friends-leaderboard')
