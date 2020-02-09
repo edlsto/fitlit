@@ -29,9 +29,6 @@ let stepsList = document.querySelector('#steps-list')
 let minutesList = document.querySelector('#minutes-list')
 let stairsList = document.querySelector('#stairs-list')
 let trend = document.querySelector('#trend')
-let goal = document.querySelector('#goal')
-
-
 let userFriends = document.querySelector("#friends");
 
 username.innerText = currentUser.returnFirstName();
@@ -102,7 +99,3 @@ if (trendInfo[0].date.toString() === new Date(today).toString()) {
 } else {
   trend.innerText = 'The last time your daily steps increased each day for three or more days was ' + monthNames[trendInfo[0].date.getMonth()] + ' ' + trendInfo[0].date.getDate() + ', when you had a streak of ' + trendInfo.length + ' days.'
 }
-
-goal.innerText = `In the last 30 days, you have reached your daily steps goal ${activity.reachedStepGoalForMonth(currentUser.id, today)} times`
-
-console.log(activity.reachedStepGoalForMonth(currentUser.id, today))
