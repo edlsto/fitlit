@@ -5,7 +5,7 @@ class Activity {
   }
 
   getTrend(userID, date) {
-    let filteredData = this.activityData.filter(el => el.userID === userID && new Date(el.date) <= new Date(today)).reverse();
+    let filteredData = this.activityData.filter(el => el.userID === userID && new Date(el.date) <= new Date(date)).reverse();
     let streak = filteredData.map((d, index) => {
       let trend = [
         {
@@ -36,7 +36,6 @@ class Activity {
         return friend === user.id;
       })
     })
-    currentUser.name = 'You'
     friends.push(currentUser)
     const result = friends.map(friend => {
       return {
