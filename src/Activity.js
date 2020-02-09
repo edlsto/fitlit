@@ -5,8 +5,8 @@ class Activity {
   }
 
   getTrend(userID, date) {
-    let days = this.activityData.filter(el => el.userID === userID && new Date(el.date) <= new Date(today)).reverse()
-    let streak = days.map((d, index) => {
+    let filteredData = this.activityData.filter(el => el.userID === userID && new Date(el.date) <= new Date(today)).reverse();
+    let streak = filteredData.map((d, index) => {
       let trend = [
         {
           date: new Date(d.date),
@@ -14,14 +14,14 @@ class Activity {
         }
       ];
       let n = 0;
-      while (days[index + n + 1] && days[index + n].numSteps > days[index + n + 1].numSteps) {
+      while (filteredData[index + n + 1] && filteredData[index + n].numSteps > filteredData[index + n + 1].numSteps) {
         trend.push({
           date: new Date(new Date(d.date).setDate(new Date(d.date).getDate() - n - 1)),
-          numSteps: days[index + n + 1].numSteps
+          numSteps: filteredData[index + n + 1].numSteps
         })
         n++;
       }
-      return trend
+      return trend;
     })
     return streak.find(el => el.length >= 3);
 
