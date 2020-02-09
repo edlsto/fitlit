@@ -5,6 +5,8 @@ const Activity = require('../src/Activity')
 const data = require('../data/activity-sample.js');
 const fullData = require('../data/activity.js');
 const userData = require('../data/users-sample.js')
+const fullUserData = require('../data/users.js')
+
 
 describe('Activity', function() {
 
@@ -93,6 +95,25 @@ describe('Activity', function() {
   it('should calculate average stats for a given day among all users', function() {
     const activity = new Activity(data, userData);
     expect(activity.getAverageUserStats('2019/06/15')).to.deep.equal([ 20.8, 6026.6, 144.2 ]);
+  });
+
+  it('should rank the user among his or her friends for last seven days of steps', function() {
+    const activity = new Activity(fullData, fullUserData);
+    expect(activity.getFriendsLeaderboard(1, '2019/09/15')).to.deep.equal([
+  { name: 'Luisa Hane', numSteps: 64610 },
+  { name: 'Garnett Cruickshank', numSteps: 63268 },
+  { name: 'Mae Connelly', numSteps: 55162 },
+  { name: 'Laney Abshire', numSteps: 53324 }
+]);
+  });
+
+  it('should calculate trends of three or more days of increasing steps', function() {
+    const activity = new Activity(fullData, userData);
+    expect(activity.getTrend(1, '2019/09/15')).to.deep.equal([
+  { date: new Date('2019/09/12'), numSteps: 13684 },
+  { date: new Date('2019/09/11'), numSteps: 10350 },
+  { date: new Date('2019/09/10'), numSteps: 5938 }
+]);
   });
 
 
