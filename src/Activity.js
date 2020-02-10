@@ -4,6 +4,51 @@ class Activity {
     this.userData = userData
   }
 
+  getTrend(userID, date) {
+    let filteredData = this.activityData.filter(el => el.userID === userID && new Date(el.date) <= new Date(date)).reverse();
+    let streak = filteredData.map((d, index) => {
+      let trend = [
+        {
+          date: new Date(d.date),
+          numSteps: d.numSteps
+        }
+      ];
+      let n = 0;
+      while (filteredData[index + n + 1] && filteredData[index + n].numSteps > filteredData[index + n + 1].numSteps) {
+        trend.push({
+          date: new Date(new Date(d.date).setDate(new Date(d.date).getDate() - n - 1)),
+          numSteps: filteredData[index + n + 1].numSteps
+        })
+        n++;
+      }
+      return trend;
+    })
+    return streak.find(el => el.length >= 3);
+
+  }
+
+  getFriendsLeaderboard(userID, date) {
+    const currentUser = this.userData.find(user => {
+      return userID === user.id;
+    })
+    const friends = currentUser.friends.map(friend => {
+      return this.userData.find(user => {
+        return friend === user.id;
+      })
+    })
+    friends.push(currentUser)
+    const result = friends.map(friend => {
+      return {
+        name: friend.name,
+        numSteps: this.getStatsForWeek(friend.id, date).map(el => el[0]).reduce((acc, el) => {
+          acc += el;
+          return acc;
+        }, 0)
+      }
+    }).sort((a, b) => b.numSteps - a.numSteps)
+    return result;
+  }
+
   getSteps(userID, date) {
     return this.activityData.find(el => {
       return (el.userID === userID) && (el.date === date)
