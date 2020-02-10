@@ -56,7 +56,12 @@ class Activity {
       && el.userID === userID
     });
     let result = filteredResults.map(el => {
-      return [el.numSteps, el.minutesActive, el.flightsOfStairs]
+      return {
+        date: el.date,
+        numSteps: el.numSteps,
+        minutesActive: el.minutesActive,
+        flightsOfStairs: el.flightsOfStairs
+      }
     })
     return result;
   }
