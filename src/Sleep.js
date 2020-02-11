@@ -6,10 +6,10 @@ class Sleep {
     let userSleepData = this.sleepData.filter(el => {
       return el.userID === userID;
     })
-    return userSleepData.reduce((acc, el) => {
+    return Number((userSleepData.reduce((acc, el) => {
       acc += el.hoursSlept;
       return acc;
-    }, 0) / userSleepData.length
+    }, 0) / userSleepData.length).toFixed(1))
   }
   averageSleepQualityForUser(userID) {
     let userSleepData = this.sleepData.filter(el => {

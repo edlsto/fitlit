@@ -2,48 +2,59 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Sleep = require('../src/Sleep')
-const data = require('../data/sleep-sample.js');
-const fullData = require('../data/sleep.js');
+const data = require('../data/sleep.js');
+const sampleData = require('../data/sleep-sample.js');
+let sleep;
 
 describe('Sleep', function() {
+  beforeEach(function() {
+    sleep = new Sleep(data);
+  });
 
   it('should be a function', function() {
     expect(Sleep).to.be.a('function');
   });
 
   it('should be an instance of Sleep', function() {
-    const sleep = new Sleep();
     expect(sleep).to.be.an.instanceof(Sleep);
   });
 
-  it('should calculate average hours of sleep', function() {
-    const sleep = new Sleep(data);
-    expect(sleep.averageHoursSleptPerDay(1)).to.equal(5.1);
+  it('should instantiate with data by default', function() {
+    sleep = new Sleep(sampleData);
+    expect(sleep.sleepData).to.deep.equal([
+      {userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2},
+      {userID: 2, date: '2019/06/15', hoursSlept: 7, sleepQuality: 4.7},
+      {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7},
+      {userID: 4, date: '2019/06/15', hoursSlept: 5.4, sleepQuality: 3},
+      {userID: 1, date: '2019/06/15', hoursSlept: 4.1, sleepQuality: 3.6}
+    ]);
+  });
+
+  it('should calculate the overall average hours of sleep for a user', function() {
+    expect(sleep.averageHoursSleptPerDay(1)).to.equal(7.7);
+  });
+
+  it('should calculate the overall average sleep quality for a user', function() {
+    expect(sleep.averageSleepQualityForUser(1)).to.equal(3);
   });
 
   it('should return hours slept for a specific day', function() {
-    const sleep = new Sleep(data);
-    expect(sleep.getHoursSlept(3,"2019/06/15")).to.equal(10.8)
-    expect(sleep.getHoursSlept(2,"2019/06/15")).to.equal(7)
+    expect(sleep.getHoursSlept(3,"2019/06/15")).to.equal(10.8);
+  });
+
+  it('should return hours slept for a specific day for different users', function() {
+    expect(sleep.getHoursSlept(2,"2019/06/15")).to.equal(7);
   });
 
   it('should find the hours slept for a specific week', function() {
-    const sleep = new Sleep(fullData);
-    expect(sleep.hoursSleptForSpecificWeek(22,"2019/09/22")).to.deep.equal([ 9.3, 9.2, 9.5, 7.5, 5.1, 11, 6 ])
+    expect(sleep.hoursSleptForSpecificWeek(22,"2019/09/22")).to.deep.equal([ 9.3, 9.2, 9.5, 7.5, 5.1, 11, 6 ]);
   });
 
   it('should return a user\'s sleep quality for a specific week', function() {
-    const sleep = new Sleep(fullData);
-    expect(sleep.sleepQualityForSpecificWeek(22,"2019/09/22")).to.deep.equal([ 4, 4.8, 4.7, 4.6, 1.4, 1.7, 3.2 ])
-  });
-
-  it('should calculate average sleep quality for a user', function() {
-    const sleep = new Sleep(data);
-    expect(sleep.averageSleepQualityForUser(1)).to.equal(2.9)
+    expect(sleep.sleepQualityForSpecificWeek(22,"2019/09/22")).to.deep.equal([ 4, 4.8, 4.7, 4.6, 1.4, 1.7, 3.2 ]);
   });
 
   it('should find good sleepers for a specific week', function() {
-    const sleep = new Sleep(fullData);
     expect(sleep.findGoodSleepers("2019/09/22")).to.deep.equal([
   { userID: 5, averageSleepQuality: 3.5 },
   { userID: 8, averageSleepQuality: 3.2 },
@@ -67,11 +78,10 @@ describe('Sleep', function() {
   { userID: 48, averageSleepQuality: 3.7 },
   { userID: 49, averageSleepQuality: 3.1 },
   { userID: 50, averageSleepQuality: 3.6 }
-])
+]);
   });
 
   it('should find the longest sleepers for a given day', function() {
-    const sleep = new Sleep(fullData);
     expect(sleep.findLongestSleepers("2019/09/22")).to.deep.equal([
     {
       userID: 7,
@@ -85,11 +95,10 @@ describe('Sleep', function() {
       hoursSlept: 10.9,
       sleepQuality: 3.8
     }
-    ])
+  ]);
   });
 
   it('should return sleep quality for a given day', function() {
-    const sleep = new Sleep(data);
     expect(sleep.getSleepQuality(1, "2019/06/15")).to.equal(2.2);
   });
 
