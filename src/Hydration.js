@@ -6,10 +6,10 @@ class Hydration {
     let userHydrationData = this.hydrationData.filter(el => {
       return el.userID === userID
     })
-    return userHydrationData.reduce((acc, el) => {
+    return Number((userHydrationData.reduce((acc, el) => {
       acc += el.numOunces;
       return acc;
-    }, 0) / userHydrationData.length
+    }, 0) / userHydrationData.length).toFixed(1))
   }
 
   waterConsumedForSpecificDay(userID, date) {
