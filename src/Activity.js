@@ -130,7 +130,7 @@ class Activity {
         }
       ];
       let n = 0;
-      while (filteredData[index + n].numSteps > currentUser.dailyStepGoal) {
+      while (filteredData[index + n] && filteredData[index + n].numSteps > currentUser.dailyStepGoal) {
         trend.push({
           date: new Date(new Date(d.date).setDate(new Date(d.date).getDate() - n - 1)),
           numSteps: filteredData[index + n].numSteps,
@@ -140,7 +140,6 @@ class Activity {
       }
       return trend;
     })
-    console.log(streak.find(el => el.length >= 3));
     return streak.find(el => el.length >= 3);
   };
 
