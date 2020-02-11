@@ -28,7 +28,8 @@ let flightsStairsCompare = document.querySelector('#flights-stairs-compare')
 let stepsList = document.querySelector('#steps-list')
 let minutesList = document.querySelector('#minutes-list')
 let stairsList = document.querySelector('#stairs-list')
-let trend = document.querySelector('#trend')
+let trend = document.querySelector('#trend');
+let stepGoalTrend = document.querySelector('#trend');
 let userFriends = document.querySelector("#friends");
 
 username.innerText = currentUser.returnFirstName();
@@ -37,7 +38,6 @@ userEmail.innerText = currentUser.email;
 userStrideLength.innerText = currentUser.strideLength;
 userStepGoal.innerText = numberWithCommas(currentUser.dailyStepGoal);
 let friends = activity.getFriendsLeaderboard(currentUser.id, today);
-console.log(friends)
 friends.forEach(el => {
   if (el.name === currentUser.name) {
     el.name = 'You'
@@ -103,3 +103,7 @@ if (trendInfo[0].date.toString() === new Date(today).toString()) {
 } else {
   trend.innerText = 'The last time your daily steps increased each day for three or more days was ' + monthNames[trendInfo[0].date.getMonth()] + ' ' + trendInfo[0].date.getDate() + ', when you had a streak of ' + trendInfo.length + ' days.'
 }
+
+
+
+console.log(activity.findConsecutiveDaysReachedGoal(1, '2019/09/15'))
