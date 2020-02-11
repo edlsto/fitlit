@@ -37,6 +37,7 @@ class Activity {
       })
     })
     friends.push(currentUser)
+    // console.log(friends);
     const result = friends.map(friend => {
       return {
         name: friend.name,
