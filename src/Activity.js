@@ -38,9 +38,11 @@ class Activity {
     })
     friends.push(currentUser)
     const result = friends.map(friend => {
+      console.log(this.getStatsForWeek(friend.id, date))
+
       return {
         name: friend.name,
-        numSteps: this.getStatsForWeek(friend.id, date).map(el => el[0]).reduce((acc, el) => {
+        numSteps: this.getStatsForWeek(friend.id, date).map(el => el.numSteps).reduce((acc, el) => {
           acc += el;
           return acc;
         }, 0)
