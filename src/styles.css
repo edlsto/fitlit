@@ -104,3 +104,7 @@ header {
   margin-bottom: 1em;
   background-color: white;
 }
+
+.bold {
+  font-weight: bold;
+}
