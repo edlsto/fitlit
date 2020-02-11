@@ -6,7 +6,6 @@ const data = require('../data/users-sample.js');
 let user;
 
 describe('User', function() {
-
   beforeEach(function() {
     user = new User(data[0]);
   });
