@@ -175,6 +175,11 @@ var weekChart = new Chart(ctx, {
         }]
     },
     options: {
+      legend: {
+        labels: {
+          boxWidth: 10
+        }
+      },
         scales: {
             yAxes: [{
                 display: false,
@@ -226,6 +231,11 @@ var hydrationChart = new Chart(ctx, {
         }]
     },
     options: {
+      legend: {
+        labels: {
+          boxWidth: 10
+        }
+      },
         scales: {
             yAxes: [{
                 id: 'A',
@@ -348,13 +358,12 @@ var sleepChart = new Chart(ctx, {
                 ticks: {
                     beginAtZero: true
                 },
-                display: false
             },{
                 id: 'B',
                 ticks: {
                     beginAtZero: true
                 },
-                display: false
+                position: 'right'
             }]
         }
     }
