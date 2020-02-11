@@ -1,7 +1,7 @@
 let random = Math.ceil(Math.random() * 50)
 let currentUser = new User(userData[random]);
 let hydration = new Hydration(hydrationData);
-let activity = new Activity(activityData, userData)
+let activity = new Activity(activityData, userData);
 let sleep = new Sleep(sleepData);
 let userRepository = new UserRepository(userData);
 let today = '2019/08/15'
@@ -22,14 +22,14 @@ let sleepQualityAverage = document.querySelector('#sleep-quality-average');
 let stepsToday = document.querySelector('#steps-today');
 let activeToday = document.querySelector('#active-today')
 let flightsStairsToday = document.querySelector('#flights-stairs-today')
-let stepsCompare = document.querySelector('#steps-compare')
-let minutesActiveCompare = document.querySelector('#minutes-active-compare')
-let flightsStairsCompare = document.querySelector('#flights-stairs-compare')
-let stepsList = document.querySelector('#steps-list')
-let minutesList = document.querySelector('#minutes-list')
-let stairsList = document.querySelector('#stairs-list')
+let stepsCompare = document.querySelector('#steps-compare');
+let minutesActiveCompare = document.querySelector('#minutes-active-compare');
+let flightsStairsCompare = document.querySelector('#flights-stairs-compare');
+let stepsList = document.querySelector('#steps-list');
+let minutesList = document.querySelector('#minutes-list');
+let stairsList = document.querySelector('#stairs-list');
 let trend = document.querySelector('#trend');
-let stepGoalTrend = document.querySelector('#trend');
+let stepGoalTrend = document.querySelector('#step-goal-trend');
 let userFriends = document.querySelector("#friends");
 
 username.innerText = currentUser.returnFirstName();
@@ -104,6 +104,10 @@ if (trendInfo[0].date.toString() === new Date(today).toString()) {
   trend.innerText = 'The last time your daily steps increased each day for three or more days was ' + monthNames[trendInfo[0].date.getMonth()] + ' ' + trendInfo[0].date.getDate() + ', when you had a streak of ' + trendInfo.length + ' days.'
 }
 
+let stepTrendInfo = activity.findConsecutiveDaysReachedGoal(currentUser.id, today);
 
-
-console.log(activity.findConsecutiveDaysReachedGoal(1, '2019/09/15'))
+if (stepTrendInfo[0].date.toString() === new Date(today).toString()) {
+  stepGoalTrend.innerText = `You have met you step goal for the last ${stepTrendInfo.length} days!`
+} else {
+  stepGoalTrend.innerText = 'The last time you met your step goal 3 or more days in a row was ' + monthNames[stepTrendInfo[0].date.getMonth()] + ' ' + stepTrendInfo[0].date.getDate() + ', when you had a streak of ' + stepTrendInfo.length + ' days.'
+}
