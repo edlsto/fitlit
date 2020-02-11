@@ -23,7 +23,6 @@
       <p>Friends:</p>
       <ul id="friends">
       </ul>
-
     </section>
     <section class="widget-section">
       <div class="hydration">
@@ -32,9 +31,9 @@
             <i class="fa fa-tint fa-5x"></i>
           </div>
           <h2 class="title">Today</h2>
-          <div><p>You have consumed</p> </div>
-            <h2><span id="water-today"></span></h2>
-            <div><p>ounces of water</p></div>
+          <div><p>You have consumed</p></div>
+          <h2><span id="water-today" class="big-display-stat"></span></h2>
+          <div><p>ounces of water</p></div>
           <h2 class="title">Last 7 days</h2>
           <canvas id="hydrationChart" height="300"></canvas>
         </div>
@@ -45,57 +44,52 @@
             <i class="fa fa-bed fa-5x"></i>
           </div>
           <h2 class="title">Last night</h2>
-          <div class="sleep-scores">
+          <div class="scores">
             <div>
               <div><p>You slept </p> </div>
-                <h2><span id="sleep-today"></span> </h2>
+                <h2><span id="sleep-today" class="big-display-stat"></span> </h2>
               <div><p>hours last night</p></div>
             </div>
             <div>
-                <div><p>with a</p></div>
-                 <h2><span id="sleep-quality"></span></h2>
-                 <div><p>sleep quality</p></div>
+              <div><p>with a</p></div>
+                <h2><span id="sleep-quality" class="big-display-stat"></span></h2>
+              <div><p>sleep quality</p></div>
             </div>
           </div>
           <h2 class="title">Last 7 days</h2>
           <canvas id="sleepChart" height="300"></canvas>
+        </div>
       </div>
-    </div>
       <div class="activity">
         <div class="card">
           <div class="icon">
             <i class="fa fa-heartbeat fa-5x"></i>
           </div>
           <h2 class="title">Today</h2>
-          <div class="activity-scores">
-            <div>
-            <div><p>You took </p> </div>
-              <h2><span id="steps-today"></span> </h2>
+          <div class="scores">
+            <div class="activity-score">
+              <div><p>You took </p></div>
+              <h2><span id="steps-today" class="medium-display-stat"></span> </h2>
               <div><p>steps</p></div>
+              <div><p>(<span id="steps-compare"></span>)</p></div>
             </div>
-            <div>
-                <div><p>You were active for </p></div>
-                 <h2><span id="sleep-quality"></span></h2>
-                 <div><p>sleep quality</p></div>
+            <div class="activity-score">
+              <div><p>Active time </p> </div>
+                <h2><span id="active-today" class="medium-display-stat"></span> </h2>
+                <div><p>minutes (<span id="minutes-active-compare"></span>)</p></div>
+              </div>
+            <div class="activity-score">
+              <div><p>You climbed </p> </div>
+                <h2><span id="flights-stairs-today" class="medium-display-stat"></span> </h2>
+                <div><p>flights (<span id="flights-stairs-compare"></span>)</p></div>
+              </div>
+            </div>
+            <h2 class="title">Last 7 days</h2>
+            <div class="week-container">
+              <canvas id="weekChart" height="260"></canvas>
             </div>
           </div>
-          <p>You took <span id="steps-today"></span> steps today (<span id="steps-compare"></span>)</p>
         </div>
-        <div class="card">
-          <!-- <h2>Minutes active today</h2> -->
-          <p>You were active for minutes <span id="active-today"></span> today (<span id="minutes-active-compare"></span>)</p>
-        </div>
-        <div class="card">
-          <!-- <h2>Stairs climbed today</h2> -->
-          <p>You climbed <span id="flights-stairs-today"></span> flights of stairs today (<span id="flights-stairs-compare"></span>)</p>
-        </div>
-        <div class="card">
-          <h2>Last 7 days</h2>
-          <div class="week-container">
-            <canvas id="weekChart" height="200"></canvas>
-          </div>
-        </div>
-
       </div>
     </section>
     <script type="text/javascript" src="./Activity.js"></script>
