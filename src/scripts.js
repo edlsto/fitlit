@@ -1,10 +1,21 @@
+// import Sortable from 'sortablejs';
+
+
 let random = Math.ceil(Math.random() * 50)
 let currentUser = new User(userData[random]);
 let hydration = new Hydration(hydrationData);
 let activity = new Activity(activityData, userData);
 let sleep = new Sleep(sleepData);
 let userRepository = new UserRepository(userData);
-let today = '2019/08/15'
+let today = '2019/08/15';
+
+var el = document.getElementById('grid');
+console.log(grid)
+var sortable = Sortable.create(el, {
+    animation: 150,
+    ghostClass: 'blue-background-class'
+});
+console.log(sortable)
 let username = document.querySelector("#name");
 let userAddress = document.querySelector("#address");
 let userEmail = document.querySelector("#email");
