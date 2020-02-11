@@ -5,6 +5,8 @@ const Activity = require('../src/Activity')
 const data = require('../data/activity-sample.js');
 const fullData = require('../data/activity.js');
 const userData = require('../data/users-sample.js')
+const fullUserData = require('../data/users.js')
+
 
 describe('Activity', function() {
 
@@ -95,5 +97,32 @@ describe('Activity', function() {
     expect(activity.getAverageUserStats('2019/06/15')).to.deep.equal([ 20.8, 6026.6, 144.2 ]);
   });
 
+  it('should rank the user among his or her friends for last seven days of steps', function() {
+    const activity = new Activity(fullData, fullUserData);
+    expect(activity.getFriendsLeaderboard(1, '2019/09/15')).to.deep.equal([
+  { name: 'Luisa Hane', numSteps: 64610 },
+  { name: 'Garnett Cruickshank', numSteps: 63268 },
+  { name: 'Mae Connelly', numSteps: 55162 },
+  { name: 'Laney Abshire', numSteps: 53324 }
+]);
+  });
+
+  it('should calculate trends of three or more days of increasing steps', function() {
+    const activity = new Activity(fullData, userData);
+    expect(activity.getTrend(1, '2019/09/15')).to.deep.equal([
+  { date: new Date('2019/09/12'), numSteps: 13684 },
+  { date: new Date('2019/09/11'), numSteps: 10350 },
+  { date: new Date('2019/09/10'), numSteps: 5938 }
+]);
+  });
+
+  it('should find consecutive days when the user met their goal', function() {
+    const activity = new Activity(fullData, userData);
+    expect(activity.findConsecutiveDaysReachedGoal(1, '2019/09/15')).to.deep.equal([
+  { date: new Date('2019/09/12'), numSteps: 13684, goal: 10000 },
+  { date: new Date('2019/09/11'), numSteps: 13684, goal: 10000 },
+  { date: new Date('2019/09/10'), numSteps: 10350, goal: 10000 }
+]);
+  });
 
 })
