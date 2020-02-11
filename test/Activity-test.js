@@ -116,5 +116,13 @@ describe('Activity', function() {
 ]);
   });
 
+  it('should find consecutive days when the user met their goal', function() {
+    const activity = new Activity(fullData, userData);
+    expect(activity.findConsecutiveDaysReachedGoal(1, '2019/09/15')).to.deep.equal([
+  { date: new Date('2019/09/12'), numSteps: 13684, goal: 10000 },
+  { date: new Date('2019/09/11'), numSteps: 13684, goal: 10000 },
+  { date: new Date('2019/09/10'), numSteps: 10350, goal: 10000 }
+]);
+  });
 
 })
