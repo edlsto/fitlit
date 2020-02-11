@@ -116,6 +116,34 @@ class Activity {
     return stepsForDay >= currentUser.dailyStepGoal;
   }
 
+  findConsecutiveDaysReachedGoal(userID, date) {
+    let currentUser = this.userData.find(user => {
+      return userID === user.id;
+    });
+    let filteredData = this.activityData.filter(el => el.userID === userID && new Date(el.date) <= new Date(date)).reverse();
+    let streak = filteredData.map((d, index) => {
+      let trend = [
+        {
+          date: new Date(d.date),
+          numSteps: d.numSteps,
+          goal: currentUser.dailyStepGoal
+        }
+      ];
+      let n = 0;
+      while (filteredData[index + n].numSteps > currentUser.dailyStepGoal) {
+        trend.push({
+          date: new Date(new Date(d.date).setDate(new Date(d.date).getDate() - n - 1)),
+          numSteps: filteredData[index + n].numSteps,
+          goal: currentUser.dailyStepGoal
+        })
+        n++;
+      }
+      return trend;
+    })
+    console.log(streak.find(el => el.length >= 3));
+    return streak.find(el => el.length >= 3);
+  };
+
   findDaysExceededStepGoal(userID) {
     let currentUser = this.userData.find(user => {
       return userID === user.id;
@@ -124,7 +152,7 @@ class Activity {
       return el.numSteps >= currentUser.dailyStepGoal && el.userID === userID;
     });
     return result.map(el => el.date)
-  }
+  };
 
   getStairClimbRecord(userID) {
     let filteredResults = this.activityData.filter(el => el.userID === userID)
