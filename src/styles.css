@@ -37,25 +37,23 @@ header {
   color: gray;
 }
 
-#water-today {
+.big-display-stat {
   font-size: 2em;
   line-height: 85%;
   color: #71eeb8;
 }
 
-#sleep-today {
-  font-size: 2em;
+.medium-display-stat {
+  font-size: 1.5em;
   line-height: 85%;
   color: #71eeb8;
 }
 
-#sleep-quality {
-  font-size: 2em;
-  line-height: 85%;
-  color: #71eeb8;
+.activity-score {
+  flex: 1 0 0;
 }
 
-.sleep-scores {
+.scores {
   display: flex;
   justify-content: space-around;
 }
@@ -76,7 +74,7 @@ header {
   display: grid;
   grid-template-areas:
     "hydration sleep activity";
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: .5fr .8fr 1fr;
   grid-area: widgets;
   background-color: lightgray;
   padding-right: 1em;
@@ -97,18 +95,7 @@ header {
 .activity {
   grid-area: activity;
   padding: 1em 0 0 1em;
-}
-
-.activity .card {
-  flex: 0 1 48.5%;
-}
-
-.higher {
-  color: green;
-}
-
-.lower {
-  color: red;
+  text-align: center;
 }
 
 .card {
@@ -116,11 +103,4 @@ header {
   padding: 1.5em;
   margin-bottom: 1em;
   background-color: white;
-
-}
-
-
-.week-container {
-  display: flex;
-  justify-content: space-around;
 }
