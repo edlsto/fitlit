@@ -3,6 +3,8 @@
   <head>
     <link rel="stylesheet" href="./styles.css">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Activity Tracker</title>
@@ -33,61 +35,66 @@
     <section class="widget-section">
       <div class="hydration">
         <div class="card">
-          <h2>Hydration today</h2>
-          <p>You have consumed <span id="water-today"></span> ounces of water today</p>
-        </div>
-        <div class="card">
-          <h2>Hydration last 7 days</h2>
-          <p>In the last seven days you have consumed:
-            <ul id="water-week-list">
-            </ul>
-          </p>
+          <div class="icon">
+            <i class="fa fa-tint fa-5x"></i>
+          </div>
+          <h2 class="title">Today</h2>
+          <div><p>You have consumed</p></div>
+          <h2><span id="water-today" class="big-display-stat"></span></h2>
+          <div><p>ounces of water</p></div>
+          <h2 class="title">Last 7 days</h2>
+          <canvas id="hydrationChart" height="300"></canvas>
         </div>
       </div>
       <div class="sleep">
         <div class="card">
-          <h2>Sleep today</h2>
-          <p>You slept <span id="sleep-today"></span> hours last night with a sleep quality of <span id="sleep-quality"></span></p>
-        </div>
-        <div class="card">
-          <h2>Sleep last 7 days</h2>
-          <p>In the last seven days you have slept:
-            <ul id="sleep-week-list">
-            </ul>
-          </p>
-        </div>
-        <div class="card">
-          <h2>Sleep averages</h2>
-          <p>On average, you sleep <span id="sleep-hours-average"></span> hours with a sleep quality of <span id="sleep-quality-average"></span></p>
+          <div class="icon">
+            <i class="fa fa-bed fa-5x"></i>
+          </div>
+          <h2 class="title">Last night</h2>
+          <div class="scores">
+            <div>
+              <div><p>You slept </p> </div>
+                <h2><span id="sleep-today" class="big-display-stat"></span> </h2>
+              <div><p>hours last night</p></div>
+            </div>
+            <div>
+              <div><p>with a</p></div>
+                <h2><span id="sleep-quality" class="big-display-stat"></span></h2>
+              <div><p>sleep quality</p></div>
+            </div>
+          </div>
+          <h2 class="title">Last 7 days</h2>
+          <canvas id="sleepChart" height="300"></canvas>
         </div>
       </div>
       <div class="activity">
         <div class="card">
-          <h2>Steps today</h2>
-          <p>You took <span id="steps-today"></span> steps today (<span id="steps-compare"></span>)</p>
-        </div>
-        <div class="card">
-          <h2>Minutes active today</h2>
-          <p>You were active for minutes <span id="active-today"></span> today (<span id="minutes-active-compare"></span>)</p>
-        </div>
-        <div class="card">
-          <h2>Stairs climbed today</h2>
-          <p>You climbed <span id="flights-stairs-today"></span> flights of stairs today (<span id="flights-stairs-compare"></span>)</p>
-        </div>
-        <div class="card">
-          <h2>Weekly activity view</h2>
-          <div class="week-container">
-            <div>
-              <p>Steps:</p>
-              <ul id="steps-list"></ul>
+          <div class="icon">
+            <i class="fa fa-heartbeat fa-5x"></i>
+          </div>
+          <h2 class="title">Today</h2>
+          <div class="scores">
+            <div class="activity-score">
+              <div><p>You took </p></div>
+              <h2><span id="steps-today" class="medium-display-stat"></span> </h2>
+              <div><p>steps</p></div>
+              <div><p>(<span id="steps-compare"></span>)</p></div>
             </div>
-            <div>
-              <p>Minutes active:</p>
-              <ul id="minutes-list"></ul>
+            <div class="activity-score">
+              <div><p>Active time </p> </div>
+                <h2><span id="active-today" class="medium-display-stat"></span> </h2>
+                <div><p>minutes (<span id="minutes-active-compare"></span>)</p></div>
+              </div>
+            <div class="activity-score">
+              <div><p>You climbed </p> </div>
+                <h2><span id="flights-stairs-today" class="medium-display-stat"></span> </h2>
+                <div><p>flights (<span id="flights-stairs-compare"></span>)</p></div>
+              </div>
             </div>
-            <div>
-              <p>Flights climbed:</p>
-              <ul id="stairs-list"></ul>
+            <h2 class="title">Last 7 days</h2>
+            <div class="week-container">
+              <canvas id="weekChart" height="260"></canvas>
             </div>
           </div>
         </div>

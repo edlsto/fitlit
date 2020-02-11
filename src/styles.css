@@ -28,6 +28,36 @@ header {
   font-size: 2em;
 }
 
+.title {
+  margin-top: .4em;
+}
+
+.icon {
+  text-align: center;
+  color: gray;
+}
+
+.big-display-stat {
+  font-size: 2em;
+  line-height: 85%;
+  color: #71eeb8;
+}
+
+.medium-display-stat {
+  font-size: 1.5em;
+  line-height: 85%;
+  color: #71eeb8;
+}
+
+.activity-score {
+  flex: 1 0 0;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-around;
+}
+
 .user-info {
   grid-area: user;
   background: lightgray;
@@ -44,7 +74,7 @@ header {
   display: grid;
   grid-template-areas:
     "hydration sleep activity";
-    grid-template-columns: .4fr .6fr 1fr;
+    grid-template-columns: .5fr .8fr 1fr;
   grid-area: widgets;
   background-color: lightgray;
   padding-right: 1em;
@@ -53,28 +83,19 @@ header {
 .hydration {
   grid-area: hydration;
   padding: 1em 0 0 1em;
+  text-align: center;
 }
 
 .sleep {
   grid-area: sleep;
   padding: 1em 0 0 1em;
+  text-align: center;
 }
 
 .activity {
   grid-area: activity;
   padding: 1em 0 0 1em;
-}
-
-.activity .card {
-  flex: 0 1 48.5%;
-}
-
-.higher {
-  color: green;
-}
-
-.lower {
-  color: red;
+  text-align: center;
 }
 
 .card {
@@ -82,11 +103,6 @@ header {
   padding: 1.5em;
   margin-bottom: 1em;
   background-color: white;
-}
-
-.week-container {
-  display: flex;
-  justify-content: space-around;
 }
 
 .bold {

@@ -38,9 +38,11 @@ class Activity {
     })
     friends.push(currentUser)
     const result = friends.map(friend => {
+      console.log(this.getStatsForWeek(friend.id, date))
+
       return {
         name: friend.name,
-        numSteps: this.getStatsForWeek(friend.id, date).map(el => el[0]).reduce((acc, el) => {
+        numSteps: this.getStatsForWeek(friend.id, date).map(el => el.numSteps).reduce((acc, el) => {
           acc += el;
           return acc;
         }, 0)
@@ -101,7 +103,12 @@ class Activity {
       && el.userID === userID
     });
     let result = filteredResults.map(el => {
-      return [el.numSteps, el.minutesActive, el.flightsOfStairs]
+      return {
+        date: el.date,
+        numSteps: el.numSteps,
+        minutesActive: el.minutesActive,
+        flightsOfStairs: el.flightsOfStairs
+      }
     })
     return result;
   }

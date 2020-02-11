@@ -57,19 +57,22 @@ averageStepGoal.innerText = numberWithCommas(userRepository.getAverageStepGoal()
 stepCompare.innerText = currentUser.dailyStepGoal > userRepository.getAverageStepGoal() ? 'higher' : 'lower';
 waterToday.innerText = hydration.waterConsumedForSpecificDay(currentUser.id, today)
 let waterWeek = hydration.waterConsumedForSpecificWeek(currentUser.id, today);
-waterWeek.forEach(el => {
-  waterWeekList.insertAdjacentHTML('afterbegin', `<li>${el} ounces</ul>`)
-});
+console.log(waterWeek)
+// waterWeek.forEach(el => {
+//   waterWeekList.insertAdjacentHTML('afterbegin', `<li>${el} ounces</ul>`)
+// });
 
 sleepToday.innerText = sleep.getHoursSlept(currentUser.id, today);
 sleepQuality.innerText = sleep.getSleepQuality(currentUser.id, today);
 let sleepWeek = sleep.hoursSleptForSpecificWeek(currentUser.id, today);
+console.log(sleepWeek)
 let sleepQualityWeek = sleep.sleepQualityForSpecificWeek(currentUser.id, today)
-sleepWeek.forEach((el, i) => {
-  sleepWeekList.insertAdjacentHTML('afterbegin', `<li>${el} hours /  Quality score: ${sleepQualityWeek[i]}</ul>`)
-});
-sleepHoursAverage.innerText = sleep.averageHoursSleptPerDay(currentUser.id)
-sleepQualityAverage.innerText = sleep.averageSleepQualityForUser(currentUser.id)
+console.log(sleepQualityWeek)
+// sleepWeek.forEach((el, i) => {
+//   sleepWeekList.insertAdjacentHTML('afterbegin', `<li>${el} hours /  Quality score: ${sleepQualityWeek[i]}</ul>`)
+// });
+// sleepHoursAverage.innerText = sleep.averageHoursSleptPerDay(currentUser.id)
+// sleepQualityAverage.innerText = sleep.averageSleepQualityForUser(currentUser.id)
 
 stepsToday.innerText = numberWithCommas(activity.getSteps(currentUser.id, today))
 
@@ -87,11 +90,12 @@ minutesActiveCompare.innerText = `${(Math.abs(activity.getActiveMinutesForSpecif
 flightsStairsCompare.innerText = `${(Math.abs(activity.getStairsClimbed(currentUser.id, today) - activity.getAverageUserStats(today)[0]) / activity.getStairsClimbed(currentUser.id, today) * 100).toFixed(1)}% ${activity.getStairsClimbed(currentUser.id, today) > activity.getAverageUserStats(today)[0] ? 'higher' : 'lower'} than average`
 
 let statsWeek = activity.getStatsForWeek(currentUser.id, today);
-statsWeek.forEach(el => {
-  stepsList.insertAdjacentHTML('afterbegin', `<li>${numberWithCommas(el[0])}</ul>`);
-  minutesList.insertAdjacentHTML('afterbegin', `<li>${el[1]}</ul>`);
-  stairsList.insertAdjacentHTML('afterbegin', `<li>${el[2]}</ul>`);
-})
+// statsWeek.forEach(el => {
+//   stepsList.insertAdjacentHTML('afterbegin', `<li>${numberWithCommas(el[0])}</ul>`);
+//   minutesList.insertAdjacentHTML('afterbegin', `<li>${el[1]}</ul>`);
+//   stairsList.insertAdjacentHTML('afterbegin', `<li>${el[2]}</ul>`);
+// })
+
 
 const monthNames = ["Jan.", "Feb.", "March", "April", "May", "June",
   "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
@@ -111,3 +115,284 @@ if (stepTrendInfo[0].date.toString() === new Date(today).toString()) {
 } else {
   stepGoalTrend.innerText = 'The last time you met your step goal 3 or more days in a row was ' + monthNames[stepTrendInfo[0].date.getMonth()] + ' ' + stepTrendInfo[0].date.getDate() + ', when you had a streak of ' + stepTrendInfo.length + ' days.'
 }
+
+
+var months = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
+
+var ctx = document.getElementById('weekChart').getContext('2d');
+var weekChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: statsWeek.map(el => months[new Date(el.date).getMonth()] + ' ' + new Date(el.date).getDate()),
+        datasets: [{
+            label: 'Steps',
+            data: statsWeek.map(el => el.numSteps),
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 3,
+            lineTension: 0,
+            yAxisID: 'A',
+            fill: false
+        },
+        {
+            label: 'Minutes active',
+            data: statsWeek.map(el => el.minutesActive),
+            backgroundColor: [
+              'blue',
+              'blue',
+              'blue',
+              'blue',
+              'blue',
+              'blue',
+              'blue'
+            ],
+            borderColor: [
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+                'blue'
+            ],
+            borderWidth: 3,
+            lineTension: 0,
+            yAxisID: 'B',
+            fill: false
+        },{
+            label: 'Flights of stairs',
+            data: statsWeek.map(el => el.flightsOfStairs),
+            backgroundColor: [
+                'orange',
+                'orange',
+                'orange',
+                'orange',
+                'orange',
+                'orange',
+                'orange'
+            ],
+            borderColor: [
+                'orange',
+                'orange',
+                'orange',
+                'orange',
+                'orange',
+                'orange',
+                'orange'
+            ],
+            borderWidth: 3,
+            lineTension: 0,
+            yAxisID: 'C',
+            fill: false
+        }]
+    },
+    options: {
+      legend: {
+        labels: {
+          boxWidth: 10
+        }
+      },
+        scales: {
+            yAxes: [{
+                display: false,
+                id: 'A',
+                ticks: {
+                    beginAtZero: true
+                }
+            }, {
+              display: false,
+              id: 'B'
+            },  {
+              display: false,
+              id: 'C'
+            }]
+        }
+    }
+});
+
+
+var ctx = document.getElementById('hydrationChart').getContext('2d');
+var hydrationChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: statsWeek.map(el => months[new Date(el.date).getMonth()] + ' ' + new Date(el.date).getDate()),
+        datasets: [{
+            label: 'Ounces of water',
+            data: waterWeek,
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 3,
+            yAxisID: 'A',
+            fill: false
+        }]
+    },
+    options: {
+      legend: {
+        labels: {
+          boxWidth: 10
+        }
+      },
+        scales: {
+            yAxes: [{
+                id: 'A',
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('sleepChart').getContext('2d');
+var sleepChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: statsWeek.map(el => months[new Date(el.date).getMonth()] + ' ' + new Date(el.date).getDate()),
+        datasets: [{
+            label: 'Hours of sleep',
+            data: sleepWeek,
+            backgroundColor: [
+              'blue',
+              'blue',
+              'blue',
+              'blue',
+              'blue',
+              'blue',
+              'blue',
+            ],
+            borderColor: [
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+            ],
+            borderWidth: 3,
+            lineTension: 0,
+            yAxisID: 'A',
+            fill: false
+        },{
+            label: 'Sleep quality score',
+            data: sleepQualityWeek,
+            backgroundColor: [
+                'red',
+                'red',
+                'red',
+                'red',
+                'red',
+                'red',
+                'red',
+            ],
+            borderColor: [
+                'red',
+                'red',
+                'red',
+                'red',
+                'red',
+                'red',
+                'red',
+            ],
+            borderWidth: 3,
+            lineTension: 0,
+            yAxisID: 'B',
+            fill: false
+        },{
+            label: 'Average sleep',
+            data: Array(7).fill(sleep.averageHoursSleptPerDay(currentUser.id)),
+            backgroundColor: [
+                'rgba(44, 130, 201, .2)',
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+                'blue',
+            ],
+            borderColor: [
+                'rgba(44, 130, 201, .5)'
+            ],
+            borderWidth: 2,
+            lineTension: 0,
+            yAxisID: 'A',
+            fill: false,
+            type: 'line',
+            pointRadius: 0
+        },{
+            label: 'Average quality',
+            data: Array(7).fill(sleep.averageSleepQualityForUser(currentUser.id)),
+            backgroundColor: [
+                'red',
+                'red',
+                'red',
+                'red',
+                'red',
+                'red',
+                'red',
+            ],
+            borderColor: [
+                'rgba(240, 52, 52, .5)'
+            ],
+            borderWidth: 2,
+            lineTension: 0,
+            yAxisID: 'B',
+            fill: false,
+            type: 'line',
+            pointRadius: 0
+        }]
+    },
+    options: {
+        legend: {
+          labels: {
+            boxWidth: 10
+          }
+        },
+        scales: {
+            yAxes: [{
+                id: 'A',
+                ticks: {
+                    beginAtZero: true
+                },
+            },{
+                id: 'B',
+                ticks: {
+                    beginAtZero: true
+                },
+                position: 'right'
+            }]
+        }
+    }
+});
