@@ -50,14 +50,50 @@ describe('Activity', function() {
     });
 
     it('should get all stats for specific week for specific user', function() {
-      expect(activity.getStatsForWeek(1, '2019/09/22')).to.deep.equal([
-        [ 11067, 300, 19 ],
-    [ 4901, 288, 10 ],
-    [ 9974, 80, 40 ],
-    [ 12083, 218, 20 ],
-    [ 14000, 262, 17 ],
-    [ 5711, 137, 43 ],
-    [ 8072, 239, 23 ]]);
+      expect(activity.getStatsForWeek(1, '2019/09/15')).to.deep.equal([
+        {
+          date: '2019/09/09',
+          numSteps: 11346,
+          minutesActive: 257,
+          flightsOfStairs: 33
+        },
+        {
+          date: '2019/09/10',
+          numSteps: 5938,
+          minutesActive: 183,
+          flightsOfStairs: 2
+        },
+        {
+          date: '2019/09/11',
+          numSteps: 10350,
+          minutesActive: 242,
+          flightsOfStairs: 29
+        },
+        {
+          date: '2019/09/12',
+          numSteps: 13684,
+          minutesActive: 274,
+          flightsOfStairs: 30
+        },
+        {
+          date: '2019/09/13',
+          numSteps: 8705,
+          minutesActive: 67,
+          flightsOfStairs: 40
+        },
+        {
+          date: '2019/09/14',
+          numSteps: 4559,
+          minutesActive: 153,
+          flightsOfStairs: 44
+        },
+        {
+          date: '2019/09/15',
+          numSteps: 10028,
+          minutesActive: 113,
+          flightsOfStairs: 45
+        }
+      ]);
     });
 
     it('should determine whether a user reaches a step goal for a specific day', function() {
@@ -98,6 +134,7 @@ describe('Activity', function() {
     });
 
     it('should rank the user among his or her friends for last seven days of steps', function() {
+      activity = new Activity(fullData, fullUserData);
       expect(activity.getFriendsLeaderboard(1, '2019/09/15')).to.deep.equal([
     { name: 'Luisa Hane', numSteps: 64610 },
     { name: 'Garnett Cruickshank', numSteps: 63268 },

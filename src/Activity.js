@@ -37,9 +37,7 @@ class Activity {
       })
     })
     friends.push(currentUser)
-    // console.log(friends);
     const result = friends.map(friend => {
-      console.log(this.getStatsForWeek(friend.id, date))
 
       return {
         name: friend.name,
