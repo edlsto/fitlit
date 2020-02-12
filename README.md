@@ -2,9 +2,9 @@
 
 This project creates a dashboard to view health stats such as activity types, hydration amount and sleep. We aimed to show our knowledge of the object-oriented programming paradigm as well as JavaScript iterator methods to manipulate and display data from datasets. We also visualized our data using the Chart.js library in multiple ways.
 
-The dashboard is customized for one current user from the users database, including unique greeting, user details, user info and activity/sleep/hydration data. It also shows most recent trend and a ranked leaderboard of friends.
+The dashboard is customized for one current user from the users database, including unique greeting, user details, user info and activity/sleep/hydration data. It also shows most recent trends and a ranked leaderboard of friends.
 
-We completed Iterations 1 through 5. We also completed the extension that calls for creating an admin view. 
+We completed Iterations 1 through 5. We also completed the extension that calls for creating an admin view. The admin view shows multiple graphs for all users stats over the last 30 days. 
 
 - GitHub Pages deployment for dashboard: https://edlsto.github.io/fitlit/src/index.html
 - GitHub Pages deployment for admin page: https://edlsto.github.io/fitlit/src/admin.html
