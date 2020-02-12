@@ -102,4 +102,161 @@ describe('Sleep', function() {
     expect(sleep.getSleepQuality(1, "2019/06/15")).to.equal(2.2);
   });
 
+  it('should find averages for all users for 30 days', function() {
+    expect(sleep.calculateSleepAvgForAllUsersForLastMonth("2019/09/15")).to.deep.equal([
+  {
+    date: 'Sun Sep 15 2019',
+    averageHoursSlept: 7.4,
+    averageSleepQuality: 2.9
+  },
+  {
+    date: 'Sat Sep 14 2019',
+    averageHoursSlept: 7.5,
+    averageSleepQuality: 2.9
+  },
+  {
+    date: 'Fri Sep 13 2019',
+    averageHoursSlept: 7.6,
+    averageSleepQuality: 3
+  },
+  {
+    date: 'Thu Sep 12 2019',
+    averageHoursSlept: 7.6,
+    averageSleepQuality: 2.7
+  },
+  {
+    date: 'Wed Sep 11 2019',
+    averageHoursSlept: 7.1,
+    averageSleepQuality: 3
+  },
+  {
+    date: 'Tue Sep 10 2019',
+    averageHoursSlept: 7.2,
+    averageSleepQuality: 2.8
+  },
+  {
+    date: 'Mon Sep 09 2019',
+    averageHoursSlept: 7.4,
+    averageSleepQuality: 3.1
+  },
+  {
+    date: 'Sun Sep 08 2019',
+    averageHoursSlept: 7.7,
+    averageSleepQuality: 3.1
+  },
+  {
+    date: 'Sat Sep 07 2019',
+    averageHoursSlept: 7.5,
+    averageSleepQuality: 2.9
+  },
+  {
+    date: 'Fri Sep 06 2019',
+    averageHoursSlept: 7.2,
+    averageSleepQuality: 3.1
+  },
+  {
+    date: 'Thu Sep 05 2019',
+    averageHoursSlept: 7.7,
+    averageSleepQuality: 2.8
+  },
+  {
+    date: 'Wed Sep 04 2019',
+    averageHoursSlept: 7.7,
+    averageSleepQuality: 3.1
+  },
+  {
+    date: 'Tue Sep 03 2019',
+    averageHoursSlept: 8,
+    averageSleepQuality: 2.9
+  },
+  {
+    date: 'Mon Sep 02 2019',
+    averageHoursSlept: 7.5,
+    averageSleepQuality: 2.9
+  },
+  {
+    date: 'Sun Sep 01 2019',
+    averageHoursSlept: 7.5,
+    averageSleepQuality: 2.9
+  },
+  {
+    date: 'Sat Aug 31 2019',
+    averageHoursSlept: 7.4,
+    averageSleepQuality: 3
+  },
+  {
+    date: 'Fri Aug 30 2019',
+    averageHoursSlept: 7.4,
+    averageSleepQuality: 2.7
+  },
+  {
+    date: 'Thu Aug 29 2019',
+    averageHoursSlept: 7.5,
+    averageSleepQuality: 2.9
+  },
+  {
+    date: 'Wed Aug 28 2019',
+    averageHoursSlept: 7.5,
+    averageSleepQuality: 3.3
+  },
+  {
+    date: 'Tue Aug 27 2019',
+    averageHoursSlept: 7.1,
+    averageSleepQuality: 3
+  },
+  {
+    date: 'Mon Aug 26 2019',
+    averageHoursSlept: 7.8,
+    averageSleepQuality: 3.1
+  },
+  {
+    date: 'Sun Aug 25 2019',
+    averageHoursSlept: 7.9,
+    averageSleepQuality: 2.8
+  },
+  {
+    date: 'Sat Aug 24 2019',
+    averageHoursSlept: 7.6,
+    averageSleepQuality: 3
+  },
+  {
+    date: 'Fri Aug 23 2019',
+    averageHoursSlept: 7.5,
+    averageSleepQuality: 2.9
+  },
+  {
+    date: 'Thu Aug 22 2019',
+    averageHoursSlept: 7.9,
+    averageSleepQuality: 3
+  },
+  {
+    date: 'Wed Aug 21 2019',
+    averageHoursSlept: 7.3,
+    averageSleepQuality: 3.1
+  },
+  {
+    date: 'Tue Aug 20 2019',
+    averageHoursSlept: 7.5,
+    averageSleepQuality: 3.1
+  },
+  {
+    date: 'Mon Aug 19 2019',
+    averageHoursSlept: 7.3,
+    averageSleepQuality: 2.8
+  },
+  {
+    date: 'Sun Aug 18 2019',
+    averageHoursSlept: 7,
+    averageSleepQuality: 3
+  },
+  {
+    date: 'Sat Aug 17 2019',
+    averageHoursSlept: 7.5,
+    averageSleepQuality: 3
+  }
+]);
+  });
+
+
+
 });
