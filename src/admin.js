@@ -45,10 +45,10 @@ var ctx = document.getElementById('admin-sleep').getContext('2d');
 var weekChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.date),
+        labels: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.date).reverse(),
         datasets: [{
             label: 'Average Hours Slept',
-            data: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.averageHoursSlept),
+            data: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.averageHoursSlept).reverse(),
             backgroundColor: [
                 '#59C0A6'
             ],
@@ -61,7 +61,7 @@ var weekChart = new Chart(ctx, {
         },
         {
             label: 'Average Sleep Quality',
-            data: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.averageSleepQuality),
+            data: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.averageSleepQuality).reverse(),
             backgroundColor: [
                 '#ED82ED'
             ],
