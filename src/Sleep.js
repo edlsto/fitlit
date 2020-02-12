@@ -87,6 +87,38 @@ class Sleep {
     return sleepDataForDay.filter(el => el.hoursSlept === mostSlept)
   }
 
+  calculateSleepAvgForAllUsersForLastMonth(endDate) {
+    const date = new Date(endDate);
+    const thirtyDaysAgo = new Date(new Date(endDate).setDate(new Date(endDate).getDate() - 30));
+    var filteredResults = this.sleepData.filter(el => {
+      const elementDate = new Date(el.date)
+      return (elementDate <= date) && (elementDate > thirtyDaysAgo);
+    })
+    let sleepAverages = []
+    for (var i = 0; i < 30; i++) {
+      let dayData = []
+      filteredResults.forEach(result => {
+        if (new Date(result.date).toDateString() === new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString()) {
+          dayData.push([result.hoursSlept, result.sleepQuality])
+        }
+      })
+      sleepAverages.push(
+        {
+        date: new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString(),
+        averageHoursSlept: Number((dayData.reduce((acc, el) => {
+        acc += el[0];
+        return acc;
+      }, 0) / dayData.length).toFixed(1)),
+        averageSleepQuality: Number((dayData.reduce((acc, el) => {
+        acc += el[1];
+        return acc;
+      }, 0) / dayData.length).toFixed(1))
+    })
+    }
+    console.log(sleepAverages);
+    return sleepAverages;
+}
+
 }
 
 if (typeof module !== 'undefined') {
