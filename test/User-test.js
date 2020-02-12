@@ -32,4 +32,8 @@ describe('User', function() {
     expect(user.returnFirstName()).to.equal('Luisa');
   });
 
+  it('should get a list of user and friends', function() {
+    expect(user.getFriendsAndSelf(user, '2019/09/15')).to.deep.equal([ 16, 4, 8, 1 ]);
+  });
+
 });

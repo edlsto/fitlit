@@ -115,7 +115,6 @@ class Sleep {
       }, 0) / dayData.length).toFixed(1))
     })
     }
-    console.log(sleepAverages);
     return sleepAverages;
 }
 

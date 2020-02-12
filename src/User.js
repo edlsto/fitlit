@@ -8,9 +8,17 @@ class User {
     this.dailyStepGoal = userData.dailyStepGoal;
     this.friends = userData.friends;
   }
+
   returnFirstName() {
     return this.name.split(' ')[0]
   }
+
+  getFriendsAndSelf(currentUser, date) {
+    const friends = currentUser.friends;
+    friends.push(currentUser. id)
+    return friends
+  }
+
 }
 
 if (typeof module !== 'undefined') {

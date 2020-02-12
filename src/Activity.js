@@ -1,11 +1,10 @@
 class Activity {
-  constructor(activityData, userData) {
+  constructor(activityData) {
     this.activityData = activityData
-    this.userData = userData
   }
 
-  getTrend(userID, date) {
-    let filteredData = this.activityData.filter(el => el.userID === userID && new Date(el.date) <= new Date(date)).reverse();
+  getTrend(currentUser, date) {
+    let filteredData = this.activityData.filter(el => el.userID === currentUser.id && new Date(el.date) <= new Date(date)).reverse();
     let streak = filteredData.map((d, index) => {
       let trend = [
         {
@@ -27,64 +26,41 @@ class Activity {
 
   }
 
-  getFriendsLeaderboard(userID, date) {
-    const currentUser = this.userData.find(user => {
-      return userID === user.id;
-    })
-    const friends = currentUser.friends.map(friend => {
-      return this.userData.find(user => {
-        return friend === user.id;
-      })
-    })
-    friends.push(currentUser)
-    const result = friends.map(friend => {
-
-      return {
-        name: friend.name,
-        numSteps: this.getStatsForWeek(friend.id, date).map(el => el.numSteps).reduce((acc, el) => {
-          acc += el;
-          return acc;
-        }, 0)
-      }
-    }).sort((a, b) => b.numSteps - a.numSteps)
-    return result;
-  }
-
-  getSteps(userID, date) {
+  getSteps(currentUser, date) {
     return this.activityData.find(el => {
-      return (el.userID === userID) && (el.date === date)
+      return (el.userID === currentUser.id) && (el.date === date)
     }).numSteps;
   }
 
-  getStairsClimbed(userID, date) {
+  getStairsClimbed(currentUser, date) {
     return this.activityData.find(el => {
-      return (el.userID === userID) && (el.date === date)
+      return (el.userID === currentUser.id) && (el.date === date)
     }).flightsOfStairs;
   }
 
-  getMilesWalked(userID, date) {
-    let currentUser = this.userData.find(user => {
-      return userID === user.id;
-    })
+  getMilesWalked(currentUser, date) {
+    // let currentUser = this.userData.find(user => {
+    //   return userID === user.id;
+    // })
     let miles = this.activityData.find(el => {
-      return (el.userID === userID) && (el.date === date)
+      return (el.userID === currentUser.id) && (el.date === date)
     }).numSteps * currentUser.strideLength / 5280;
     return Number(miles.toFixed(1))
   }
 
-  getActiveMinutesForSpecificDay(userID, date) {
+  getActiveMinutesForSpecificDay(currentUser, date) {
     return this.activityData.find(el => {
-      return (el.userID === userID) && (el.date === date)
+      return (el.userID === currentUser.id) && (el.date === date)
     }).minutesActive;
   }
 
-  getAverageActiveMinutesForWeek(userID, endDate) {
+  getAverageActiveMinutesForWeek(currentUser, endDate) {
     const date = new Date(endDate)
     const sevenDaysAgo = new Date(new Date(endDate).setDate(new Date(endDate).getDate() - 7))
     var filteredResults = this.activityData.filter(el => {
       const elementDate = new Date(el.date)
       return (elementDate <= date) && (elementDate > sevenDaysAgo)
-      && el.userID === userID
+      && el.userID === currentUser.id
     });
     let result = filteredResults.reduce((acc, el) => {
       acc += el.minutesActive;
@@ -93,13 +69,13 @@ class Activity {
     return Number(result.toFixed(1))
   }
 
-  getStatsForWeek(userID, endDate) {
+  getStatsForWeek(currentUser, endDate) {
     const date = new Date(endDate)
     const sevenDaysAgo = new Date(new Date(endDate).setDate(new Date(endDate).getDate() - 7))
     var filteredResults = this.activityData.filter(el => {
       const elementDate = new Date(el.date)
       return (elementDate <= date) && (elementDate > sevenDaysAgo)
-      && el.userID === userID
+      && el.userID === currentUser.id
     });
     let result = filteredResults.map(el => {
       return {
@@ -112,21 +88,21 @@ class Activity {
     return result;
   }
 
-  reachedStepGoal(userID, date) {
-    let currentUser = this.userData.find(user => {
-      return userID === user.id;
-    })
+  reachedStepGoal(currentUser, date) {
+    // let currentUser = this.userData.find(user => {
+    //   return userID === user.id;
+    // })
     let stepsForDay = this.activityData.find(el => {
-      return (el.userID === userID) && (el.date === date)
+      return (el.userID === currentUser.id) && (el.date === date)
     }).numSteps;
     return stepsForDay >= currentUser.dailyStepGoal;
   }
 
-  findConsecutiveDaysReachedGoal(userID, date) {
-    let currentUser = this.userData.find(user => {
-      return userID === user.id;
-    });
-    let filteredData = this.activityData.filter(el => el.userID === userID && new Date(el.date) <= new Date(date)).reverse();
+  findConsecutiveDaysReachedGoal(currentUser, date) {
+    // let currentUser = this.userData.find(user => {
+    //   return userID === user.id;
+    // });
+    let filteredData = this.activityData.filter(el => el.userID === currentUser.id && new Date(el.date) <= new Date(date)).reverse();
     let streak = filteredData.map((d, index) => {
       let trend = [
         {
@@ -149,18 +125,18 @@ class Activity {
     return streak.find(el => el.length >= 3);
   };
 
-  findDaysExceededStepGoal(userID) {
-    let currentUser = this.userData.find(user => {
-      return userID === user.id;
-    })
+  findDaysExceededStepGoal(currentUser) {
+    // let currentUser = this.userData.find(user => {
+    //   return userID === user.id;
+    // })
     let result = this.activityData.filter(el => {
-      return el.numSteps >= currentUser.dailyStepGoal && el.userID === userID;
+      return el.numSteps >= currentUser.dailyStepGoal && el.userID === currentUser.id;
     });
     return result.map(el => el.date)
   };
 
-  getStairClimbRecord(userID) {
-    let filteredResults = this.activityData.filter(el => el.userID === userID)
+  getStairClimbRecord(currentUser) {
+    let filteredResults = this.activityData.filter(el => el.userID === currentUser.id)
     return filteredResults.sort((a, b) => b.flightsOfStairs - a.flightsOfStairs)[0].flightsOfStairs;
   }
 
@@ -213,7 +189,6 @@ class Activity {
       }, 0) / dayData.length).toFixed(1))
     })
     }
-    console.log(activityAverages);
     return activityAverages;
 }
 
