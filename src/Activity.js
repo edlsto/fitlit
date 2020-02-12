@@ -39,9 +39,6 @@ class Activity {
   }
 
   getMilesWalked(currentUser, date) {
-    // let currentUser = this.userData.find(user => {
-    //   return userID === user.id;
-    // })
     let miles = this.activityData.find(el => {
       return (el.userID === currentUser.id) && (el.date === date)
     }).numSteps * currentUser.strideLength / 5280;
@@ -89,9 +86,6 @@ class Activity {
   }
 
   reachedStepGoal(currentUser, date) {
-    // let currentUser = this.userData.find(user => {
-    //   return userID === user.id;
-    // })
     let stepsForDay = this.activityData.find(el => {
       return (el.userID === currentUser.id) && (el.date === date)
     }).numSteps;
@@ -99,9 +93,6 @@ class Activity {
   }
 
   findConsecutiveDaysReachedGoal(currentUser, date) {
-    // let currentUser = this.userData.find(user => {
-    //   return userID === user.id;
-    // });
     let filteredData = this.activityData.filter(el => el.userID === currentUser.id && new Date(el.date) <= new Date(date)).reverse();
     let streak = filteredData.map((d, index) => {
       let trend = [
@@ -126,9 +117,6 @@ class Activity {
   }
 
   findDaysExceededStepGoal(currentUser) {
-    // let currentUser = this.userData.find(user => {
-    //   return userID === user.id;
-    // })
     let result = this.activityData.filter(el => {
       return el.numSteps >= currentUser.dailyStepGoal && el.userID === currentUser.id;
     });

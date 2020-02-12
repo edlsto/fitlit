@@ -24,6 +24,7 @@ let flightsStairsCompare = document.querySelector('#flights-stairs-compare');
 let trend = document.querySelector('#trend');
 let stepGoalTrend = document.querySelector('#step-goal-trend');
 let userFriends = document.querySelector("#friends");
+let milesWalked = document.querySelector('#miles-walked')
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -34,6 +35,7 @@ userAddress.innerText = currentUser.address;
 userEmail.innerText = currentUser.email;
 userStrideLength.innerText = currentUser.strideLength;
 userStepGoal.innerText = numberWithCommas(currentUser.dailyStepGoal);
+
 let friendsList = currentUser.getFriendsAndSelf(currentUser);
 const result = friendsList.map(friend => {
   return userRepository.data.find(person => {
@@ -75,6 +77,7 @@ let sleepWeek = sleep.hoursSleptForSpecificWeek(currentUser.id, today);
 let sleepQualityWeek = sleep.sleepQualityForSpecificWeek(currentUser.id, today)
 
 stepsToday.innerText = numberWithCommas(activity.getSteps(currentUser, today))
+milesWalked.innerText = activity.getMilesWalked(currentUser, today)
 
 activeToday.innerText = activity.getActiveMinutesForSpecificDay(currentUser, today)
 
