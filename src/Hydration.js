@@ -31,7 +31,32 @@ class Hydration {
     })
   }
 
-
+  calculateHydrationAvgForAllUsersForLastMonth(endDate) {
+    const date = new Date(endDate);
+    const thirtyDaysAgo = new Date(new Date(endDate).setDate(new Date(endDate).getDate() - 30));
+    var filteredResults = this.hydrationData.filter(el => {
+      const elementDate = new Date(el.date)
+      return (elementDate <= date) && (elementDate > thirtyDaysAgo);
+    })
+    let hydrationAverages = []
+    for (var i = 0; i < 30; i++) {
+      let dayData = []
+      filteredResults.forEach(result => {
+        if (new Date(result.date).toDateString() === new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString()) {
+          dayData.push(result.numOunces)
+        }
+      })
+      hydrationAverages.push(
+        {
+        date: new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString(),
+        averageNumOunces: dayData.reduce((acc, el) => {
+        acc += el;
+        return acc;
+      }, 0) / dayData.length
+    })
+    }
+    return hydrationAverages;
+}
 }
 
 if (typeof module !== 'undefined') {

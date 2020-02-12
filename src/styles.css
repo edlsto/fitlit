@@ -108,3 +108,12 @@ header {
 .bold {
   font-weight: bold;
 }
+
+.admin-main {
+  display: grid;
+  grid-template-areas:
+    "hydration sleep"
+    "activity1 activity2";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+}
