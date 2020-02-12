@@ -61,24 +61,24 @@ class Sleep {
       const elementDate = new Date(el.date)
       return (elementDate <= date) && (elementDate > sevenDaysAgo)
     });
-      let userList = filteredResults.reduce((acc, el) => {
-        if (!acc.includes(el.userID)) {
-          acc.push(el.userID)
-        }
-        return acc
-      }, [])
-      let sleepQualityAverages = userList.map(el => {
-        return {
-          userID: el,
-          averageSleepQuality: Number((filteredResults.reduce((acc, result) => {
-            if (result.userID === el) {
-              acc += result.sleepQuality;
-            }
-            return acc;
-          }, 0) / 7).toFixed(1))
-        }
-      })
-      return sleepQualityAverages.filter(user => user.averageSleepQuality > 3)
+    let userList = filteredResults.reduce((acc, el) => {
+      if (!acc.includes(el.userID)) {
+        acc.push(el.userID)
+      }
+      return acc
+    }, [])
+    let sleepQualityAverages = userList.map(el => {
+      return {
+        userID: el,
+        averageSleepQuality: Number((filteredResults.reduce((acc, result) => {
+          if (result.userID === el) {
+            acc += result.sleepQuality;
+          }
+          return acc;
+        }, 0) / 7).toFixed(1))
+      }
+    })
+    return sleepQualityAverages.filter(user => user.averageSleepQuality > 3)
   }
   findLongestSleepers(date) {
     const sleepDataForDay = this.sleepData.filter(el => el.date === date);
@@ -104,19 +104,19 @@ class Sleep {
       })
       sleepAverages.push(
         {
-        date: new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString(),
-        averageHoursSlept: Number((dayData.reduce((acc, el) => {
-        acc += el[0];
-        return acc;
-      }, 0) / dayData.length).toFixed(1)),
-        averageSleepQuality: Number((dayData.reduce((acc, el) => {
-        acc += el[1];
-        return acc;
-      }, 0) / dayData.length).toFixed(1))
-    })
+          date: new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString(),
+          averageHoursSlept: Number((dayData.reduce((acc, el) => {
+            acc += el[0];
+            return acc;
+          }, 0) / dayData.length).toFixed(1)),
+          averageSleepQuality: Number((dayData.reduce((acc, el) => {
+            acc += el[1];
+            return acc;
+          }, 0) / dayData.length).toFixed(1))
+        })
     }
     return sleepAverages;
-}
+  }
 
 }
 
