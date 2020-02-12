@@ -147,11 +147,50 @@ header h2 {
   font-weight: bold;
 }
 
+.admin-body {
+  grid-template-areas:
+  "header header"
+  "main main";
+}
+
 .admin-main {
   display: grid;
   grid-template-areas:
+    "graphs-title graphs-title"
     "hydration sleep"
     "activity1 activity2";
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
+  grid-area: main;
+}
+
+.graphs-title {
+  grid-area: graphs-title;
+  text-align: center;
+}
+
+#admin-hydration-container,
+#admin-activity1-container {
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+#admin-hydration-container {
+  grid-area: hydration;
+}
+
+#admin-sleep-container {
+  grid-area: sleep;
+}
+
+#admin-activity1-container {
+  grid-area: activity1;
+}
+
+#admin-activity2-container {
+  grid-area: activity2;
+}
+
+.admin-main > * {
+  margin-top: 1em;
 }
