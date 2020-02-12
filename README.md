@@ -17,7 +17,10 @@ We completed Iterations 1 through 5. We also completed the extension that calls 
 - Chart.js
 
 ## Screenshots
+Dashboard:
 <img width="1413" alt="dashboard" src="https://user-images.githubusercontent.com/4350550/74385628-33b0db00-4db1-11ea-9560-df9636e5ac3c.png">
+
+Admin page:
 <img width="1411" alt="admin" src="https://user-images.githubusercontent.com/4350550/74385631-37446200-4db1-11ea-9c1a-6559f2277a74.png">
 
 
