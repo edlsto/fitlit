@@ -48,15 +48,15 @@ class Hydration {
       })
       hydrationAverages.push(
         {
-        date: new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString(),
-        averageNumOunces: dayData.reduce((acc, el) => {
-        acc += el;
-        return acc;
-      }, 0) / dayData.length
-    })
+          date: new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString(),
+          averageNumOunces: dayData.reduce((acc, el) => {
+            acc += el;
+            return acc;
+          }, 0) / dayData.length
+        })
     }
     return hydrationAverages;
-}
+  }
 }
 
 if (typeof module !== 'undefined') {
