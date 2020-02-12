@@ -123,7 +123,7 @@ class Activity {
       return trend;
     })
     return streak.find(el => el.length >= 3);
-  };
+  }
 
   findDaysExceededStepGoal(currentUser) {
     // let currentUser = this.userData.find(user => {
@@ -133,7 +133,7 @@ class Activity {
       return el.numSteps >= currentUser.dailyStepGoal && el.userID === currentUser.id;
     });
     return result.map(el => el.date)
-  };
+  }
 
   getStairClimbRecord(currentUser) {
     let filteredResults = this.activityData.filter(el => el.userID === currentUser.id)
@@ -174,23 +174,23 @@ class Activity {
       })
       activityAverages.push(
         {
-        date: new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString(),
-            averageNumSteps: Number((dayData.reduce((acc, el) => {
-        acc += el[0];
-        return acc;
-      }, 0) / dayData.length).toFixed(1)),
-        averageMinutesActive: Number((dayData.reduce((acc, el) => {
-        acc += el[1];
-        return acc;
-      }, 0) / dayData.length).toFixed(1)),
-        averageFlightsOfStairs: Number((dayData.reduce((acc, el) => {
-        acc += el[2];
-        return acc;
-      }, 0) / dayData.length).toFixed(1))
-    })
+          date: new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString(),
+          averageNumSteps: Number((dayData.reduce((acc, el) => {
+            acc += el[0];
+            return acc;
+          }, 0) / dayData.length).toFixed(1)),
+          averageMinutesActive: Number((dayData.reduce((acc, el) => {
+            acc += el[1];
+            return acc;
+          }, 0) / dayData.length).toFixed(1)),
+          averageFlightsOfStairs: Number((dayData.reduce((acc, el) => {
+            acc += el[2];
+            return acc;
+          }, 0) / dayData.length).toFixed(1))
+        })
     }
     return activityAverages;
-}
+  }
 
 
 }
