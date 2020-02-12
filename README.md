@@ -1,82 +1,27 @@
-# FitLit Starter Kit
+# FitLit - Turing Mod 2 Paired Project
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
+A dashboard to view health stats such as activity, hydration and sleep. We aimed to show our knowledge of the object-oriented programming paradigm as well as JavaScript iterator methods to manipulate and display data from datasets. We also visualized our data using the Chart.js library in multiple ways.
 
-## Setup
+The dashboard is customized for one current user from the users database, including unique greeting, user details, user info and activity/sleep/hydration data. It also shows most recent trend and a ranked leaderboard of friends.
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `open src/index.html` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
+We completed Iterations 1 through 5. We also completed the extension that calls for creating an admin view. 
 
-## Testing
+- GitHub Pages deployment for dashboard: https://edlsto.github.io/fitlit/src/index.html
+- GitHub Pages deployment for admin page: https://edlsto.github.io/fitlit/src/admin.html
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
+## Technologies used
 
-## Linting Your Code
+- HTML
+- CSS
+- JavaScript
+- Chart.js
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+## Screenshots
+<img width="1413" alt="dashboard" src="https://user-images.githubusercontent.com/4350550/74385628-33b0db00-4db1-11ea-9560-df9636e5ac3c.png">
+<img width="1411" alt="admin" src="https://user-images.githubusercontent.com/4350550/74385631-37446200-4db1-11ea-9c1a-6559f2277a74.png">
 
-Your linter will look only at the JavaScript files you have within the `src` and the `test` directories.
 
-## Data Model
+## Contributors
 
-**Users**
-
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
-
-**Activity**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
-
-**Hydration**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
-
-**Sleep**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
+- Lane Hunter: https://github.com/lanehunter-dev
+- Ed Stoner: https://github.com/edlsto
