@@ -40,3 +40,69 @@ var weekChart = new Chart(ctx, {
         }
     }
 });
+
+var ctx = document.getElementById('admin-sleep').getContext('2d');
+var weekChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.date),
+        datasets: [{
+            label: 'Average Hours Slept',
+            data: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.averageHoursSlept),
+            backgroundColor: [
+                '#59C0A6'
+            ],
+            borderColor: [
+                '#59C0A6'
+            ],
+            borderWidth: 3,
+            yAxisID: 'A',
+            fill: false
+        },
+        {
+            label: 'Average Sleep Quality',
+            data: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.averageSleepQuality),
+            backgroundColor: [
+                '#ED82ED'
+            ],
+            borderColor: [
+                '#ED82ED'
+            ],
+            borderWidth: 3,
+            yAxisID: 'B',
+            fill: false
+
+        }
+        ]
+    },
+    options: {
+      legend: {
+        labels: {
+          boxWidth: 10
+        }
+      },
+        scales: {
+            yAxes: [{
+                id: 'A',
+                scaleLabel: {
+                  display: true,
+                  labelString: "Hours Slept"
+                },
+                ticks: {
+                    beginAtZero: true
+                }
+            },
+            {
+                id: 'B',
+                scaleLabel: {
+                  display: true,
+                  labelString: "Sleep Quality"
+                },
+                ticks: {
+                    beginAtZero: true
+                },
+                position: 'right'
+            }]
+        }
+    }
+});
