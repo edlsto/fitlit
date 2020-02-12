@@ -1,6 +1,6 @@
 # FitLit - Turing Mod 2 Paired Project
 
-A dashboard to view health stats such as activity, hydration and sleep. We aimed to show our knowledge of the object-oriented programming paradigm as well as JavaScript iterator methods to manipulate and display data from datasets. We also visualized our data using the Chart.js library in multiple ways.
+This project creates a dashboard to view health stats such as activity types, hydration amount and sleep. We aimed to show our knowledge of the object-oriented programming paradigm as well as JavaScript iterator methods to manipulate and display data from datasets. We also visualized our data using the Chart.js library in multiple ways.
 
 The dashboard is customized for one current user from the users database, including unique greeting, user details, user info and activity/sleep/hydration data. It also shows most recent trend and a ranked leaderboard of friends.
 
