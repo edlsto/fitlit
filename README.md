@@ -18,11 +18,10 @@ We completed Iterations 1 through 5. We also completed the extension that calls 
 
 ## Screenshots
 Dashboard:
-<img width="1413" alt="dashboard" src="https://user-images.githubusercontent.com/4350550/74385628-33b0db00-4db1-11ea-9560-df9636e5ac3c.png">
+<img width="1412" alt="dashboard2" src="https://user-images.githubusercontent.com/4350550/74387569-1df1e480-4db6-11ea-9d9b-62876021150c.png">
 
 Admin page:
-<img width="1411" alt="admin" src="https://user-images.githubusercontent.com/4350550/74385631-37446200-4db1-11ea-9c1a-6559f2277a74.png">
-
+<img width="1412" alt="admin2" src="https://user-images.githubusercontent.com/4350550/74387572-21856b80-4db6-11ea-9b40-deba342ef0cc.png">
 
 ## Contributors
 
