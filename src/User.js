@@ -13,7 +13,7 @@ class User {
     return this.name.split(' ')[0]
   }
 
-  getFriendsAndSelf(currentUser, date) {
+  getFriendsAndSelf(currentUser) {
     const friends = currentUser.friends;
     friends.push(currentUser. id)
     return friends
