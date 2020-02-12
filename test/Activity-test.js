@@ -2,17 +2,19 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Activity = require('../src/Activity')
+const User = require('../src/User')
 const data = require('../data/activity-sample.js');
 const fullData = require('../data/activity.js');
 const userData = require('../data/users-sample.js');
-const fullUserData = require('../data/users.js');
 let activity;
+let user;
 
 describe('Activity', function() {
 
   describe('using sample dataset', function() {
     beforeEach(function() {
-      activity = new Activity(data, userData)
+      activity = new Activity(data)
+      user = new User(userData[0])
     });
 
     it('should be a function', function() {
@@ -24,33 +26,33 @@ describe('Activity', function() {
     });
 
     it('should get steps walked for specific day', function() {
-      expect(activity.getSteps(1, '2019/06/15')).to.equal(3577);
+      expect(activity.getSteps(user, '2019/06/15')).to.equal(3577);
     });
 
     it('should get stairs climbed for specific day', function() {
-      expect(activity.getStairsClimbed(1, '2019/06/15')).to.equal(16);
+      expect(activity.getStairsClimbed(user, '2019/06/15')).to.equal(16);
     });
 
     it('should get miles walked for specific day', function() {
-      expect(activity.getMilesWalked(1, '2019/06/15')).to.equal(2.9);
+      expect(activity.getMilesWalked(user, '2019/06/15')).to.equal(2.9);
     });
 
     it('should get active minutes for specific day for specific user', function() {
-      expect(activity.getActiveMinutesForSpecificDay(1, '2019/06/15')).to.equal(140);
+      expect(activity.getActiveMinutesForSpecificDay(user, '2019/06/15')).to.equal(140);
     });
   });
 
   describe('using full dataset', function() {
     beforeEach(function() {
-      activity = new Activity(fullData, userData);
+      activity = new Activity(fullData);
     });
 
     it('should get average active minutes for specific week for specific user', function() {
-      expect(activity.getAverageActiveMinutesForWeek(1, '2019/09/22')).to.equal(217.7);
+      expect(activity.getAverageActiveMinutesForWeek(user, '2019/09/22')).to.equal(217.7);
     });
 
     it('should get all stats for specific week for specific user', function() {
-      expect(activity.getStatsForWeek(1, '2019/09/15')).to.deep.equal([
+      expect(activity.getStatsForWeek(user, '2019/09/15')).to.deep.equal([
         {
           date: '2019/09/09',
           numSteps: 11346,
@@ -97,11 +99,11 @@ describe('Activity', function() {
     });
 
     it('should determine whether a user reaches a step goal for a specific day', function() {
-      expect(activity.reachedStepGoal(3, '2019/06/15')).to.equal(true);
+      expect(activity.reachedStepGoal(new User(userData[2]), '2019/06/15')).to.equal(true);
     });
 
     it('should determine which days the user exceeded their step goal', function() {
-      expect(activity.findDaysExceededStepGoal(3)).to.deep.equal([
+      expect(activity.findDaysExceededStepGoal(new User(userData[2]))).to.deep.equal([
     '2019/06/15', '2019/06/16', '2019/06/19', '2019/06/20',
     '2019/06/21', '2019/06/22', '2019/06/24', '2019/06/27',
     '2019/06/28', '2019/06/29', '2019/07/01', '2019/07/03',
@@ -126,25 +128,15 @@ describe('Activity', function() {
     });
 
     it('should determine a user\'s stair climbing record', function() {
-      expect(activity.getStairClimbRecord(3)).to.equal(49);
+      expect(activity.getStairClimbRecord(new User(userData[2]))).to.equal(49);
     });
 
     it('should calculate average stats for a given day among all users', function() {
       expect(activity.getAverageUserStats('2019/06/15')).to.deep.equal([23.88, 8386.16, 155.62]);
     });
 
-    it('should rank the user among his or her friends for last seven days of steps', function() {
-      activity = new Activity(fullData, fullUserData);
-      expect(activity.getFriendsLeaderboard(1, '2019/09/15')).to.deep.equal([
-    { name: 'Luisa Hane', numSteps: 64610 },
-    { name: 'Garnett Cruickshank', numSteps: 63268 },
-    { name: 'Mae Connelly', numSteps: 55162 },
-    { name: 'Laney Abshire', numSteps: 53324 }
-  ]);
-    });
-
     it('should calculate trends of three or more days of increasing steps', function() {
-      expect(activity.getTrend(1, '2019/09/15')).to.deep.equal([
+      expect(activity.getTrend(user, '2019/09/15')).to.deep.equal([
     { date: new Date('2019/09/12'), numSteps: 13684 },
     { date: new Date('2019/09/11'), numSteps: 10350 },
     { date: new Date('2019/09/10'), numSteps: 5938 }
@@ -152,7 +144,7 @@ describe('Activity', function() {
     });
 
     it('should find consecutive days when the user met their goal', function() {
-      expect(activity.findConsecutiveDaysReachedGoal(1, '2019/09/15')).to.deep.equal([
+      expect(activity.findConsecutiveDaysReachedGoal(user, '2019/09/15')).to.deep.equal([
     { date: new Date('2019/09/12'), numSteps: 13684, goal: 10000 },
     { date: new Date('2019/09/11'), numSteps: 13684, goal: 10000 },
     { date: new Date('2019/09/10'), numSteps: 10350, goal: 10000 }
