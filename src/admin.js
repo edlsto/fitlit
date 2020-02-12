@@ -43,18 +43,45 @@ var weekChart = new Chart(ctx, {
 
 var ctx = document.getElementById('admin-sleep').getContext('2d');
 var weekChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
         labels: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.date).reverse(),
         datasets: [{
             label: 'Average Hours Slept',
             data: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.averageHoursSlept).reverse(),
             backgroundColor: [
-                '#59C0A6'
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
+                '#59C0A6',
             ],
-            borderColor: [
-                '#59C0A6'
-            ],
+
             borderWidth: 3,
             yAxisID: 'A',
             fill: false
@@ -63,6 +90,35 @@ var weekChart = new Chart(ctx, {
             label: 'Average Sleep Quality',
             data: sleep.calculateSleepAvgForAllUsersForLastMonth(today).map(el => el.averageSleepQuality).reverse(),
             backgroundColor: [
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
+                '#ED82ED',
                 '#ED82ED'
             ],
             borderColor: [
@@ -89,7 +145,8 @@ var weekChart = new Chart(ctx, {
                   labelString: "Hours Slept"
                 },
                 ticks: {
-                    beginAtZero: true
+                    suggestedMin: 6,
+                    suggestedMax: 9
                 }
             },
             {
@@ -99,10 +156,209 @@ var weekChart = new Chart(ctx, {
                   labelString: "Sleep Quality"
                 },
                 ticks: {
-                    beginAtZero: true
+                  suggestedMin: 2.5,
+                  suggestedMax: 3.5
                 },
                 position: 'right'
             }]
+        }
+    }
+});
+
+var ctx = document.getElementById('admin-activity1').getContext('2d');
+var weekChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: activity.calculateActivityAvgForAllUsersForLastMonth(today).map(el => el.date).reverse(),
+        datasets: [{
+            label: 'Average Minutes Active',
+            data: activity.calculateActivityAvgForAllUsersForLastMonth(today).map(el => el.averageMinutesActive).reverse(),
+            backgroundColor: [
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+                '#0000FF',
+            ],
+
+            borderWidth: 3,
+            yAxisID: 'A',
+            fill: false
+        },
+        ]
+    },
+    options: {
+      legend: {
+        labels: {
+          boxWidth: 10
+        }
+      },
+        scales: {
+            yAxes: [{
+              id: 'A',
+              ticks: {
+                suggestedMin: 100,
+                suggestedMax: 200
+              }
+            },
+          ],
+            xAxes: [{
+              ticks: {
+                maxTicksLimit: 15,
+              }
+            }]
+
+        }
+    }
+});
+
+var ctx = document.getElementById('admin-activity2').getContext('2d');
+var weekChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: activity.calculateActivityAvgForAllUsersForLastMonth(today).map(el => el.date).reverse(),
+        datasets: [{
+            label: 'Average Steps',
+            data: activity.calculateActivityAvgForAllUsersForLastMonth(today).map(el => el.averageNumSteps).reverse(),
+            backgroundColor: [
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+                '#FF436C',
+            ],
+
+            borderWidth: 3,
+            yAxisID: 'A',
+            fill: false
+        },
+        {
+            label: 'Average Flights Of Stairs',
+            data: activity.calculateActivityAvgForAllUsersForLastMonth(today).map(el => el.averageFlightsOfStairs).reverse(),
+            backgroundColor: [
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+                '#ED9A00',
+            ],
+
+            borderWidth: 3,
+            yAxisID: 'B',
+            fill: false
+        }
+        ]
+    },
+    options: {
+      legend: {
+        labels: {
+          boxWidth: 10
+        }
+      },
+        scales: {
+            yAxes: [{
+              id: 'A',
+              scaleLabel: {
+                display: true,
+                labelString: 'Average Number of Steps'
+              },
+              ticks: {
+                beginAtZero: true
+              }
+            },
+            {
+              id: 'B',
+              scaleLabel: {
+                display: true,
+                labelString: 'Average Flights Of Stairs'
+              },
+              ticks: {
+                beginAtZero: true
+              },
+              position: "right"
+            },
+          ],
+            xAxes: [{
+              ticks: {
+                maxTicksLimit: 15,
+              }
+            }]
+
         }
     }
 });
