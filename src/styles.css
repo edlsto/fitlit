@@ -10,6 +10,14 @@ html {
   width: 100%;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
 body {
   display: grid;
   grid-template-areas:
@@ -21,11 +29,41 @@ body {
 }
 
 header {
+  display: grid;
+  grid-template-areas: "title greet info stats";
+  grid-template-columns: .6fr .5fr .8fr 1fr;
   grid-area: header;
   background: #71eeb8;
+}
+
+.header-title {
+  grid-area: title;
   font-weight: 800;
   padding: .4em .2em .2em 1em;
   font-size: 2em;
+}
+
+.header-greet {
+  grid-area: greet;
+  margin: 1.5em 0;
+  font-size: 1.5em;
+}
+
+.header-info {
+  grid-area: info;
+  margin: 1.5em 0;
+  font-size: 1em;
+}
+
+.header-stats {
+  grid-area: stats;
+  margin: 1.5em 0;
+  padding-left: 2em;
+  font-size: 1em;
+}
+
+header h2 {
+  font-size: 1em;
 }
 
 .title {

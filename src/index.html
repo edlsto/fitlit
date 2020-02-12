@@ -11,15 +11,23 @@
   </head>
   <body>
     <header>
-      <h1>FitLit</h1>
+      <div class="header-title">
+        <h1>FitLit</h1>
+      </div>
+      <div class="header-greet">
+        <h2>Hello, <span id="name"></span></h2>
+      </div>
+      <div class="header-info">
+        <p><span class="bold">Address: </span><span id="address"></span></p>
+        <p><span class="bold">Email: </span><span id="email"></span></p>
+      </div>
+      <div class="header-stats">
+        <p><span class="bold">Stride Length: </span><span id="stride-length"></span></p>
+        <p><span class="bold">Daily Step Goal: </span><span id="daily-step-goal"></span></p>
+        <p>Your step goal is <span class="underline"><span id="step-compare"></span></span> than the average of <span id="average-step-goal"></span>!</p>
+      </div>
     </header>
     <section class="user-info">
-      <h2>Hello, <span id="name"></span></h2>
-      <p><span id="address"></span></p>
-      <p><span id="email"></span></p>
-      <p>Stride Length: <span id="stride-length"></span></p>
-      <p>Daily Step Goal: <span id="daily-step-goal"></span></p>
-      <p>Your step goal is <span id="step-compare"></span> than the average of <span id="average-step-goal"></span>!</p>
       <div class='card'>
         <h2>Friends challenge</h2>
         <p>Leaderboard for last 7 days:</p>

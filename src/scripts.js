@@ -1,4 +1,4 @@
-let random = Math.ceil(Math.random() * 50)
+let random = Math.floor(Math.random() * 50)
 let currentUser = new User(userData[random]);
 let hydration = new Hydration(hydrationData);
 let activity = new Activity(activityData, userData);
@@ -386,10 +386,18 @@ var sleepChart = new Chart(ctx, {
                 ticks: {
                     beginAtZero: true
                 },
+                scaleLabel: {
+                  display: true,
+                  labelString: "Hours slept"
+                },
             },{
                 id: 'B',
                 ticks: {
                     beginAtZero: true
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: "Quality score"
                 },
                 position: 'right'
             }]
