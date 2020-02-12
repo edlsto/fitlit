@@ -9,18 +9,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Activity Tracker</title>
   </head>
-  <body>
+  <body class="admin-body">
     <header>
       <div class="header-title">
         <h1>FitLit</h1>
       </div>
+      <div class="header-greet">
+        <h2>Hello, Admin</h2>
+      </div>
+      <div class="header-info">
+        <p><span class="bold">Total Users: </span>50</p>
+        <p><span class="bold">Today's Date: </span>2019/08/15</p>
+        <p><span class="bold">Today's Data Count: </span>1,500</p>
+      </div>
     </header>
     <main class="admin-main">
+      <div class="graphs-title">
+        <h2>Last 30 Days</h2>
+      </div>
       <div id="admin-hydration-container">
-        <canvas id="admin-hydration" width="600" height="400"></canvas>
+        <canvas id="admin-hydration" width="400" height="200"></canvas>
       </div>
       <div id="admin-sleep-container">
-        <canvas id="admin-sleep" width="600" height="400"></canvas>
+        <canvas id="admin-sleep" width="400" height="200"></canvas>
+      </div>
+      <div id="admin-activity1-container">
+        <canvas id="admin-activity1" width="400" height="200"></canvas>
+      </div>
+      <div id="admin-activity2-container">
+        <canvas id="admin-activity2" width="400" height="200"></canvas>
       </div>
     </main>
     <script type="text/javascript" src="./Activity.js"></script>

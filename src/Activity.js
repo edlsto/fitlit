@@ -181,7 +181,41 @@ class Activity {
     return [averageStairs, averageSteps, averageMinutesActive]
   }
 
-
+  calculateActivityAvgForAllUsersForLastMonth(endDate) {
+    const date = new Date(endDate);
+    const thirtyDaysAgo = new Date(new Date(endDate).setDate(new Date(endDate).getDate() - 30));
+    var filteredResults = this.activityData.filter(el => {
+      const elementDate = new Date(el.date)
+      return (elementDate <= date) && (elementDate > thirtyDaysAgo);
+    })
+    let activityAverages = []
+    for (var i = 0; i < 30; i++) {
+      let dayData = []
+      filteredResults.forEach(result => {
+        if (new Date(result.date).toDateString() === new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString()) {
+          dayData.push([result.numSteps, result.minutesActive, result.flightsOfStairs])
+        }
+      })
+      activityAverages.push(
+        {
+        date: new Date(new Date(endDate).setDate(new Date(endDate).getDate() - i)).toDateString(),
+            averageNumSteps: Number((dayData.reduce((acc, el) => {
+        acc += el[0];
+        return acc;
+      }, 0) / dayData.length).toFixed(1)),
+        averageMinutesActive: Number((dayData.reduce((acc, el) => {
+        acc += el[1];
+        return acc;
+      }, 0) / dayData.length).toFixed(1)),
+        averageFlightsOfStairs: Number((dayData.reduce((acc, el) => {
+        acc += el[2];
+        return acc;
+      }, 0) / dayData.length).toFixed(1))
+    })
+    }
+    console.log(activityAverages);
+    return activityAverages;
+}
 
 
 }
