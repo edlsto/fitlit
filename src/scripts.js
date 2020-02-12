@@ -41,7 +41,7 @@ userAddress.innerText = currentUser.address;
 userEmail.innerText = currentUser.email;
 userStrideLength.innerText = currentUser.strideLength;
 userStepGoal.innerText = numberWithCommas(currentUser.dailyStepGoal);
-let friendsList = currentUser.getFriendsAndSelf(currentUser, today);
+let friendsList = currentUser.getFriendsAndSelf(currentUser);
 const result = friendsList.map(friend => {
   return userRepository.data.find(person => {
     return person.id === friend
