@@ -55,7 +55,6 @@ class Hydration {
       }, 0) / dayData.length
     })
     }
-    console.log(hydrationAverages.length);
     return hydrationAverages;
 }
 }
